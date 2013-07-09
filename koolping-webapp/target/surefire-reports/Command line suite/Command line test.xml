@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite hostname="pc-PC" name="com.oceantech.koolping.command.UserCommandTest" tests="9" failures="0" timestamp="9 Jul 2013 22:57:23 GMT" time="0.921" errors="0">
+  <testcase name="shouldConvertToUser" time="0.026" classname="com.oceantech.koolping.command.UserCommandTest"/>
+  <testcase name="shouldThrowIllegalArgumentExceptionIfEmailIsNotValid" time="0.004" classname="com.oceantech.koolping.command.UserCommandTest"/>
+  <testcase name="shouldShowHomePage" time="0.056" classname="com.oceantech.koolping.controller.HomeControllerTest"/>
+  <testcase name="shouldShowIndexPage" time="0.001" classname="com.oceantech.koolping.controller.IndexControllerTest"/>
+  <testcase name="shouldShowLoginPage" time="0.004" classname="com.oceantech.koolping.controller.LoginControllerTest"/>
+  <testcase name="shouldShowLoginPageWithErrorMessage" time="0.002" classname="com.oceantech.koolping.controller.LoginControllerTest"/>
+  <testcase name="shouldShowProfilePage" time="0.013" classname="com.oceantech.koolping.controller.ProfileControllerTest"/>
+  <testcase name="shouldFailToRegisterUserWhenValidationErrorOccurs" time="0.031" classname="com.oceantech.koolping.controller.RegistrationControllerTest"/>
+  <testcase name="shouldRegisterUser" time="0.01" classname="com.oceantech.koolping.controller.RegistrationControllerTest"/>
+</testsuite>

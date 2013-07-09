@@ -1,20 +1,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.realtech.cloudschool</groupId>
-    <artifactId>cloudschool</artifactId>
+    <groupId>com.oceantech.koolping</groupId>
+    <artifactId>koolping</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
-    <name>cloudschool</name>
-    <description>A sample project is initiated to create a collaborative learning environment where children can learn from any part of the world.</description>
+    <name>KOOLPING</name>
+    <description>A social review project</description>
     <inceptionYear>2013</inceptionYear>
 
     <modules>
-        <module>cloudschool-db</module>
-        <module>cloudschool-service</module>
-        <module>cloudschool-webapp</module>
-        <module>cloudschool-integration</module>
+        <module>koolping-db</module>
+        <module>koolping-service</module>
+        <module>koolping-webapp</module>
     </modules>
 
     <developers>
@@ -22,6 +21,18 @@
             <name>Sanjoy Kumar Roy</name>
             <email>sanjoykr78@gmail.com</email>
         </developer>
+        <developer>
+	    <name>Durgesh Dandotiya</name>
+	    <email>durgeshdandotiya@gmail.com</email>
+        </developer>
+        <developer>
+	     <name>Rajeev Guatam</name>
+	     <email></email>
+        </developer>
+                <developer>
+		     <name>Durairaj Subramanium</name>
+		     <email></email>
+	        </developer>
     </developers>
 
     <properties>

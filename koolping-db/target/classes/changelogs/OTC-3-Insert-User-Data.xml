@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="CS-3-Insert-User-Data" author="sanjoy.roy">
+        <sql><![CDATA[
+                    -- PASSWORD = roy
+
+                    INSERT INTO USER (USERID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, GENDER, EMAIL, STREET, CITY, ZIPCODE, COUNTRYCODE, ENABLED)
+                    VALUES ('30a2629a-c20a-4318-92fd-105be02b695d',
+                            'peter@abc.com',
+                            '96ae0279d8a225158ac07b51541958c01f521bd6e4d9eeb9189943d659742e79ece61a09fbdcadf2',
+                            'Peter',
+                            'Smith',
+                            'M',
+                            'peter@abc.com',
+                            '123 Main Road',
+                            'London',
+                            'HD2 4RD',
+                            'UK',
+                            true);
+
+                    INSERT INTO USER_ROLES (ID, AUTHORITY)
+                    VALUES (SELECT ID FROM USER WHERE USERNAME = 'peter@abc.com', 'ROLE_USER');
+            ]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>
