@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="04243e9d-52ed-4061-8d6d-1012981a9523" name="Default" comment="">
       <change type="DELETED" beforePath="D:\DEVELOPMENT\KOOL-PROJECT\koolping\.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="D:\DEVELOPMENT\KOOL-PROJECT\koolping\README.md" afterPath="" />
       <change type="DELETED" beforePath="D:\DEVELOPMENT\KOOL-PROJECT\koolping\cloudschool-db\build.xml" afterPath="" />
       <change type="DELETED" beforePath="D:\DEVELOPMENT\KOOL-PROJECT\koolping\cloudschool-db\src\main\resources\changelogs\CS-1-Create-User-Table.xml" afterPath="" />
       <change type="DELETED" beforePath="D:\DEVELOPMENT\KOOL-PROJECT\koolping\cloudschool-db\src\main\resources\changelogs\CS-2-Create-User-Role-Table.xml" afterPath="" />
@@ -69,11 +68,11 @@
       <change type="DELETED" beforePath="D:\DEVELOPMENT\KOOL-PROJECT\koolping\cloudschool-webapp\src\test\java\com\realtech\cloudschool\controller\LoginControllerTest.java" afterPath="" />
       <change type="DELETED" beforePath="D:\DEVELOPMENT\KOOL-PROJECT\koolping\cloudschool-webapp\src\test\java\com\realtech\cloudschool\controller\ProfileControllerTest.java" afterPath="" />
       <change type="DELETED" beforePath="D:\DEVELOPMENT\KOOL-PROJECT\koolping\cloudschool-webapp\src\test\java\com\realtech\cloudschool\controller\RegistrationControllerTest.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="koolping.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="04243e9d-52ed-4061-8d6d-1012981a9523" time="1373409412606" ignored="false" />
+    <file path="/Dummy.txt" changelist="04243e9d-52ed-4061-8d6d-1012981a9523" time="1373412267875" ignored="false" />
     <file path="/CS-1-Create-User-Table.xml" changelist="04243e9d-52ed-4061-8d6d-1012981a9523" time="1373406643376" ignored="false" />
     <file path="/koolping-master.xml" changelist="04243e9d-52ed-4061-8d6d-1012981a9523" time="1373406666605" ignored="false" />
     <file path="/CS-2-Create-User-Role-Table.xml" changelist="04243e9d-52ed-4061-8d6d-1012981a9523" time="1373406720142" ignored="false" />
@@ -1491,8 +1490,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="1" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
