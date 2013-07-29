@@ -12,6 +12,7 @@
                 <div class="row-fluid">
                     <div class="span12">
                         <br/>
+
                         <div th:include="includes/top :: top"></div>
                     </div>
                 </div>
@@ -34,10 +35,13 @@
                                   method="POST">
                                 <center>
                                     <h2 class="form-signup-heading">Sign Up</h2>
+
                                     <div class="alert alert-error" th:if="${errors}">
-                                        <p th:text="${#messages.msgOrNull(error.codes[1])} ? #{${error.codes[1]}} : ${error.defaultMessage}" th:each="error : ${errors}" />
+                                        <p th:text="${#messages.msgOrNull(error.codes[1])} ? #{${error.codes[1]}} : ${error.defaultMessage}"
+                                           th:each="error : ${errors}"/>
                                     </div>
-                                    <input type="text" class="input-block-level" id="inputFirst" placeholder="First Name"
+                                    <input type="text" class="input-block-level" id="inputFirst"
+                                           placeholder="First Name"
                                            th:field="*{firstname}"/>
                                     <input type="text" class="input-block-level" id="inputLast" placeholder="Last Name"
                                            th:field="*{lastname}"/>
@@ -51,6 +55,19 @@
                                     <button class="btn btn-large btn-primary" type="submit">Sign Up</button>
                                 </center>
                             </form>
+
+                        </div>
+                        <div>
+                            <ol>
+
+                                <li>
+                                    <form id="fb_signin" action="signin/facebook/" method="POST">
+                                    <a href="javascript:document.forms.fb_signin.submit()" title="Log In With Facebook">Log
+                                        In With
+                                        Facebook</a>
+                                    </form>
+                                </li>
+                            </ol>
                         </div>
                     </div>
                 </div>

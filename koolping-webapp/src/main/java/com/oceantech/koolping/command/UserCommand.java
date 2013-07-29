@@ -100,11 +100,11 @@ public class UserCommand {
 
     public User convertToUser(){
         User user = new User();
-        user.setUsername(getUsername());
+        user.setUserName(getUsername());
         StandardPasswordEncoder encoder = new StandardPasswordEncoder();
         user.setPassword(encoder.encode(getPassword()));
-        user.setFirstname(getFirstname());
-        user.setLastname(getLastname());
+        user.setFirstName(getFirstname());
+        user.setLastName(getLastname());
         Email email = new Email(getEmail());
         user.setEmail(email);
         user.setCreateDate(new Date());

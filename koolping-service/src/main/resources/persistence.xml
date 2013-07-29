@@ -5,8 +5,10 @@
 
     <persistence-unit name="koolpingPersistenceUnit">
         <class>com.oceantech.koolping.domain.model.User</class>
+        <class>com.oceantech.koolping.domain.model.SocialUser</class>
         <class>com.oceantech.koolping.domain.model.UserId</class>
         <class>com.oceantech.koolping.domain.model.UserRoles</class>
+        <class>com.oceantech.koolping.domain.model.Role</class>
         <class>com.oceantech.koolping.domain.model.Email</class>
         <class>com.oceantech.koolping.domain.model.Address</class>
     </persistence-unit>

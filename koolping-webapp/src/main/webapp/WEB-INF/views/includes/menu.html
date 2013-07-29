@@ -5,7 +5,7 @@
 <div id="menu" th:fragment="menu">
     <ul class="nav nav-list">
         <li th:class="${menuactive == 'home'} ? 'active' : ''"><a href="/koolping/home">Home</a></li>
-        <li th:class="${menuactive == 'profile'} ? 'active' : ''"><a th:href="'/koolping/profile/' + ${user.userId.id}">Profile</a></li>
+        <li th:class="${menuactive == 'profile'} ? 'active' : ''"><a th:href="'/koolping/profile/' + ${user.userId}">Profile</a></li>
         <li><a href="#">Reviews</a></li>
         <li><a href="#">Points</a></li>
         <li><a href="/koolping/logout">Logout</a></li>

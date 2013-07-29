@@ -28,7 +28,7 @@ public class HomeController {
     public String showHomePage(Principal principal, ModelMap map){
         String userName = principal.getName();
         LOGGER.info("Showing home page for [{}]", userName);
-        Page<User> users = repository.findByUsername(userName, new PageRequest(0, 1));
+        Page<User> users = repository.findByUserName(userName, new PageRequest(0, 1));
         map.addAttribute("user", users.iterator().next());
         map.addAttribute("menuactive", "home");
         return HOME_VIEW;

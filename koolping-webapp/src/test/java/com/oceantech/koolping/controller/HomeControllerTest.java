@@ -49,7 +49,7 @@ public class HomeControllerTest {
         User user =  getFakeUser();
         Page<User> users = new PageImpl<User>(Arrays.asList(user));
         Pageable pageable = new PageRequest(0, 1);
-        when(repository.findByUsername("testUser", pageable)).thenReturn(users);
+        when(repository.findByUserName("testUser", pageable)).thenReturn(users);
         Principal principal = new Principal() {
             @Override
             public String getName() {
@@ -62,12 +62,12 @@ public class HomeControllerTest {
                 .andExpect(view().name(containsString(EXPECTED_HOME_VIEW)))
                 .andExpect(status().isOk());
 
-        verify(repository).findByUsername("testUser", pageable);
+        verify(repository).findByUserName("testUser", pageable);
     }
 
     private User getFakeUser(){
         User user = new User();
-        user.setUsername("testUser");
+        user.setUserName("testUser");
         return user;
     }
 }

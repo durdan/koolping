@@ -25,6 +25,22 @@
 
                     INSERT INTO USER_ROLES (ID, AUTHORITY)
                     VALUES (SELECT ID FROM USER WHERE USERNAME = 'peter@abc.com', 'ROLE_USER');
+                     INSERT INTO USER (USERID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, GENDER, EMAIL, STREET, CITY, ZIPCODE, COUNTRYCODE, ENABLED)
+                    VALUES ('30a2629a-c20a-4318-92fd-105be02b695Z',
+                            'admin@abc.com',
+                            '96ae0279d8a225158ac07b51541958c01f521bd6e4d9eeb9189943d659742e79ece61a09fbdcadf5',
+                            'Peter',
+                            'Smith',
+                            'M',
+                            'admin@abc.com',
+                            '123 Main Road',
+                            'London',
+                            'HD2 4RD',
+                            'UK',
+                            true);
+
+                    INSERT INTO USER_ROLES (ID, AUTHORITY)
+                    VALUES (SELECT ID FROM USER WHERE USERNAME = 'peter@abc.com', 'ROLE_USER');
             ]]>
         </sql>
     </changeSet>

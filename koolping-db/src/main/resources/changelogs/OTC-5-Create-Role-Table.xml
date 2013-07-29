@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="OTC-1-Create-Role-Table" author="durgesh.dandotiya">
+        <sql><![CDATA[
+
+                CREATE TABLE ROLE (
+                    ID NUMBER(19,0) NOT NULL AUTO_INCREMENT,
+                    ROLE NUMBER(10,0) DEFAULT NULL,
+                    USERID NUMBER(19,0) DEFAULT NULL,
+                    PRIMARY KEY (ID),
+                    KEY FK_user_role (USERID),
+                    CONSTRAINT FK_user_role FOREIGN KEY (USERID) REFERENCES USER (ID)
+
+                );
+                 INSERT INTO ROLE (ROLE,USERID)
+                                     VALUES (1,SELECT ID AS USERID FROM USER WHERE USERNAME = 'peter@abc.com');
+                      INSERT INTO ROLE (ROLE,USERID)
+                                     VALUES (2,SELECT ID AS USERID FROM USER WHERE USERNAME = 'admin@abc.com');
+            ]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>

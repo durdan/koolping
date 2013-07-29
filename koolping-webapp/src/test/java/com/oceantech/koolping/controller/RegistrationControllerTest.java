@@ -110,10 +110,10 @@ public class RegistrationControllerTest {
 
     private User getFakeUser(){
         User user = new User();
-        user.setUsername("testUsername");
+        user.setUserName("testUsername");
         user.setPassword("$1$54%as56w$UgWV0I9YO9GyYfAqGmW7w/");
-        user.setFirstname("testFirstname");
-        user.setLastname("testLastname");
+        user.setFirstName("testFirstname");
+        user.setLastName("testLastname");
         Email email = new Email("testEmail@abc.com");
         user.setEmail(email);
         user.setEnabled(true);

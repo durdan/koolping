@@ -9,25 +9,28 @@
                     http://www.springframework.org/schema/context
                     http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <http auto-config="true" access-denied-page="/error/401.html">
-        <intercept-url pattern="/home" access="ROLE_USER" />
-        <intercept-url pattern="/profile" access="ROLE_USER" />
+
+    <http pattern="/resources" security="none"/>
+    <http auto-config="true" access-denied-page="/error/401.html" use-expressions="true">
+        <intercept-url pattern="/home" access="hasRole('ROLE_USER')"/>
+        <intercept-url pattern="/profile" access="hasRole('ROLE_USER')"/>
+        <intercept-url pattern="/fb/profile" access="permitAll"/>
+        <intercept-url pattern="/fb/post" access="hasRole('ROLE_USER')"/>
+        <intercept-url pattern="/signup*" access="isAnonymous()"/>
+        <intercept-url pattern="/signin/**" access="isAnonymous()"/>
+        <intercept-url pattern="/connect/**" access="isRememberMe()"/>
+        <remember-me user-service-ref="repositoryBasedUserDetailsService" key="springsocialsecuritykey"/>
         <form-login login-page="/login" default-target-url="/home" authentication-failure-url="/login-again"/>
         <logout logout-url="/logout" invalidate-session="true" logout-success-url="/login"/>
     </http>
 
-    <beans:bean id="encoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder" />
+    <beans:bean id="encoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder"/>
 
-    <authentication-manager alias="authenticationManager">
-        <authentication-provider>
-            <password-encoder ref="encoder" />
-            <jdbc-user-service data-source-ref="koolpingDataSource"
-
-                               users-by-username-query="select username, password, enabled from user where username = ?"
-
-                               authorities-by-username-query="select u.username, ur.authority from user u, user_roles ur
-		                                                     where u.id = ur.id and u.username = ?"
-            />
+    <authentication-manager>
+        <authentication-provider user-service-ref="repositoryBasedUserDetailsService">
+            <password-encoder hash="md5"/>
         </authentication-provider>
     </authentication-manager>
+
+
 </beans:beans>

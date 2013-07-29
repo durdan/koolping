@@ -40,7 +40,7 @@ public class UserRepositoryIntegrationTest extends AbstractKoolpingRepositoryTes
     public void shouldFindByUsername() {
         createSomeUsers();
 
-        Page<User> users = repository.findByUsername("timpre", new PageRequest(0, 2));
+        Page<User> users = repository.findByUserName("timpre", new PageRequest(0, 2));
 
         assertThat(users.getContent().size(), is(1));
         assertFalse(users.hasPreviousPage());
@@ -64,8 +64,8 @@ public class UserRepositoryIntegrationTest extends AbstractKoolpingRepositoryTes
         User savedUser = repository.findOne(user.getId());
 
         assertThat(savedUser.getId(), is(notNullValue()));
-        assertThat(savedUser.getFirstname(), is("Tim"));
-        assertThat(savedUser.getLastname(), is("Prentice"));
+        assertThat(savedUser.getFirstName(), is("Tim"));
+        assertThat(savedUser.getLastName(), is("Prentice"));
     }
 
     // Helper Methods
@@ -79,9 +79,9 @@ public class UserRepositoryIntegrationTest extends AbstractKoolpingRepositoryTes
         User user = new User();
         UserId uid = new UserId(userId);
         user.setUserId(uid);
-        user.setUsername(username);
-        user.setFirstname(firstname);
-        user.setLastname(lastname);
+        user.setUserName(username);
+        user.setFirstName(firstname);
+        user.setLastName(lastname);
         return repository.save(user);
     }
 }

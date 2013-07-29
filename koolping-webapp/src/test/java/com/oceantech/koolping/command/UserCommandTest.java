@@ -21,9 +21,9 @@ public class UserCommandTest {
 
         User user = command.convertToUser();
 
-        assertThat(user.getUsername(), is("username"));
-        assertThat(user.getFirstname(), is("firstname"));
-        assertThat(user.getLastname(), is("lastname"));
+        assertThat(user.getUserName(), is("username"));
+        assertThat(user.getFirstName(), is("firstname"));
+        assertThat(user.getLastName(), is("lastname"));
         assertThat(user.getEmail().getAddress(), is("email@abc.com"));
         assertThat(user.isEnabled(), is(Boolean.TRUE));
     }
