@@ -10,7 +10,12 @@
         <class>com.oceantech.koolping.domain.model.UserRoles</class>
         <class>com.oceantech.koolping.domain.model.Role</class>
         <class>com.oceantech.koolping.domain.model.Email</class>
+        <class>com.oceantech.koolping.domain.model.Country</class>
         <class>com.oceantech.koolping.domain.model.Address</class>
+        <class>com.oceantech.koolping.domain.model.RestaurantCuisineType</class>
+        <class>com.oceantech.koolping.domain.model.Restaurant</class>
+
+
     </persistence-unit>
 
 </persistence>

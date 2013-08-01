@@ -9,6 +9,8 @@
         <sql><![CDATA[
                     -- PASSWORD = roy
 
+                     INSERT INTO COUNTRY (COUNTRYCODE,COUNTRY_NAME)
+                                                                   VALUES ('UK','UNITED KINGDOM');
                     INSERT INTO USER (USERID, USERNAME, PASSWORD, FIRSTNAME, LASTNAME, GENDER, EMAIL, STREET, CITY, ZIPCODE, COUNTRYCODE, ENABLED)
                     VALUES ('30a2629a-c20a-4318-92fd-105be02b695d',
                             'peter@abc.com',

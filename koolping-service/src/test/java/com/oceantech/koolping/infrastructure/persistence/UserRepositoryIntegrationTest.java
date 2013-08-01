@@ -1,6 +1,8 @@
 package com.oceantech.koolping.infrastructure.persistence;
 
 import com.oceantech.koolping.AbstractKoolpingRepositoryTest;
+import com.oceantech.koolping.domain.model.Address;
+import com.oceantech.koolping.domain.model.Country;
 import com.oceantech.koolping.domain.model.User;
 import com.oceantech.koolping.domain.model.UserId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ public class UserRepositoryIntegrationTest extends AbstractKoolpingRepositoryTes
 
     @Autowired
     private UserRepository repository;
+
+    @Autowired
+    private CountryRepository  countryRepository;
 
     @Test
     public void shouldSaveUser() {
@@ -47,7 +52,7 @@ public class UserRepositoryIntegrationTest extends AbstractKoolpingRepositoryTes
     }
 
     @Test
-    public void shouldFindByUserId(){
+    public void shouldFindByUserId() {
         createSomeUsers();
         UserId userIdToLookFor = new UserId("uid1");
 
@@ -70,18 +75,23 @@ public class UserRepositoryIntegrationTest extends AbstractKoolpingRepositoryTes
 
     // Helper Methods
 
-    private void createSomeUsers(){
+    private void createSomeUsers() {
         createUser("johsmi", "uid1", "John", "Smith");
         createUser("timpre", "uid2", "Tim", "Prentice");
     }
 
-    private User createUser(String username, String userId, String firstname, String lastname){
+    private User createUser(String username, String userId, String firstname, String lastname) {
         User user = new User();
+        Country country = new Country("UK", "United Kingdom");
+        countryRepository.save(country);
+        Address address = new Address("Pinner Lane", "London", "HA5 4RR", country);
         UserId uid = new UserId(userId);
+
         user.setUserId(uid);
         user.setUserName(username);
         user.setFirstName(firstname);
         user.setLastName(lastname);
+        user.setAddress(address);
         return repository.save(user);
     }
 }

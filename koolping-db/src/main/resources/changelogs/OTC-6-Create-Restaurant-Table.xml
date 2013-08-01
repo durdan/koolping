@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="OTC-6-Create-Restaurant-Table" author="durgesh.dandotiya">
+        <sql><![CDATA[
+
+               CREATE TABLE RESTAURANT (
+                 RESTAURANT_ID BIGINT NOT NULL AUTO_INCREMENT,
+                 RESTAURANT_NAME VARCHAR(200),
+                 STREET VARCHAR2(255) NOT NULL,
+                 CITY VARCHAR2(100) NOT NULL,
+                 ZIPCODE VARCHAR2(20) NOT NULL,
+                 COUNTRYCODE VARCHAR2(2) NOT NULL,
+                 RESTAURANT_PHONE VARCHAR(100),
+                 RESTAURANT_WEBSITE TEXT,
+                 RESTAURANT_EMAIL VARCHAR(100),
+                 RESTAURANT_CUISINE_TYPE_ID BIGINT,
+                 PRIMARY KEY  (RESTAURANT_ID)
+               );
+
+               CREATE TABLE RESTAURANT_CUISINE_TYPE (
+                 RESTAURANT_CUISINE_TYPE_ID BIGINT NOT NULL AUTO_INCREMENT,
+                 RESTAURANT_CUISINE_NAME VARCHAR(100),
+                 PRIMARY KEY  (RESTAURANT_CUISINE_TYPE_ID)
+               );
+
+
+
+               CREATE TABLE REVIEW_RESTAURANT (
+                 REVIEW_RESTAURANT_ID BIGINT NOT NULL AUTO_INCREMENT,
+                 USER_ID BIGINT,
+                 RESTAURANT_ID BIGINT,
+                 REVIEW_DATE DATETIME,
+                 REVIEW_RATING_ID CHAR(1),
+                 IP_ADDRESS VARCHAR(30)
+               );
+
+               CREATE TABLE REVIEW_RATING (
+                 REVIEW_RATING_ID CHAR(1) NOT NULL AUTO_INCREMENT,
+                 REVIEW_DESCRIPTION VARCHAR(50),
+                 PRIMARY KEY  (REVIEW_RATING_ID)
+               );
+
+
+
+               ALTER TABLE RESTAURANT ADD CONSTRAINT RESTAURANT_fk1 FOREIGN KEY (COUNTRYCODE) REFERENCES
+               COUNTRY(COUNTRYCODE);
+
+               ALTER TABLE RESTAURANT ADD CONSTRAINT RESTAURANT_CUISINE_TYPE_fk2 FOREIGN KEY
+               (RESTAURANT_CUISINE_TYPE_ID) REFERENCES RESTAURANT_CUISINE_TYPE(RESTAURANT_CUISINE_TYPE_ID);
+
+               ALTER TABLE REVIEW_RESTAURANT ADD CONSTRAINT REVIEW_RESTAURANT_fk1 FOREIGN KEY (USER_ID) REFERENCES USER
+               (ID);
+
+               ALTER TABLE REVIEW_RESTAURANT ADD CONSTRAINT REVIEW_RESTAURANT_fk2 FOREIGN KEY (RESTAURANT_ID) REFERENCES
+               RESTAURANT(RESTAURANT_ID);
+
+               ALTER TABLE REVIEW_RESTAURANT ADD CONSTRAINT REVIEW_RESTAURANT_fk3 FOREIGN KEY (REVIEW_RATING_ID) REFERENCES
+               REVIEW_RATING(REVIEW_RATING_ID);
+
+               INSERT INTO RESTAURANT_CUISINE_TYPE ( RESTAURANT_CUISINE_NAME)
+                                                                   VALUES ('English');
+
+
+
+            ]]>
+        </sql>
+    </changeSet>
+</databaseChangeLog>

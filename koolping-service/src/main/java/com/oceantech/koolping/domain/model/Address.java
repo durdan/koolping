@@ -1,7 +1,13 @@
 package com.oceantech.koolping.domain.model;
 
+import lombok.Getter;
+import lombok.Setter;
+import org.codehaus.jackson.annotate.JsonManagedReference;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Embeddable
 public final class Address {
@@ -12,17 +18,22 @@ public final class Address {
     private String city;
     @Column(name = "ZIPCODE")
     private String zipcode;
-    @Column(name = "COUNTRYCODE")
-    private String countrycode;
+
+    @Getter
+    @Setter
+    @JsonManagedReference
+    @ManyToOne(targetEntity = Country.class)
+    @JoinColumn(name = "COUNTRYCODE")
+    private Country country;
 
     protected Address() {
     }
 
-    public Address(String street, String city, String zipcode, String countrycode) {
+    public Address(String street, String city, String zipcode, Country country) {
         this.setStreet(street);
         this.setCity(city);
         this.setZipcode(zipcode);
-        this.setCountrycode(countrycode);
+        this.setCountry(country);
     }
 
     public String getStreet() {
@@ -49,11 +60,11 @@ public final class Address {
         this.zipcode = zipcode;
     }
 
-    public String getCountrycode() {
-        return countrycode;
-    }
-
-    private void setCountrycode(String countrycode) {
-        this.countrycode = countrycode;
-    }
+//    public String getCountrycode() {
+//        return countrycode;
+//    }
+//
+//    private void setCountrycode(String countrycode) {
+//        this.countrycode = countrycode;
+//    }
 }

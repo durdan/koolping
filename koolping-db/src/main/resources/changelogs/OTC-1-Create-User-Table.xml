@@ -8,6 +8,13 @@
     <changeSet id="OTC-1-Create-User-Table" author="sanjoy.roy">
         <sql><![CDATA[
 
+        CREATE TABLE COUNTRY (
+                         COUNTRYCODE CHAR(2) NOT NULL ,
+                         COUNTRY_NAME VARCHAR(100),
+                         PRIMARY KEY  (COUNTRYCODE)
+                       );
+
+
                 CREATE TABLE USER (
                     ID NUMBER(19,0) NOT NULL AUTO_INCREMENT,
                     USERID VARCHAR(100) NOT NULL,
@@ -22,10 +29,15 @@
                     STREET VARCHAR2(255) NOT NULL,
                     CITY VARCHAR2(100) NOT NULL,
                     ZIPCODE VARCHAR2(20) NOT NULL,
-                    COUNTRYCODE VARCHAR2(2) NOT NULL,
+                    COUNTRYCODE VARCHAR2(2) ,
                     ENABLED TINYINT(1) NOT NULL,
                     PRIMARY KEY(id)
+
                 );
+
+         ALTER TABLE USER ADD CONSTRAINT USER_fk1 FOREIGN KEY (COUNTRYCODE) REFERENCES
+                   COUNTRY(COUNTRYCODE);
+
 
             ]]>
         </sql>
