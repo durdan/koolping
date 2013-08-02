@@ -1,4 +1,4 @@
-package com.oceantech.koolping.domain.model;
+package com.oceantech.koolping.domain.model.identity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

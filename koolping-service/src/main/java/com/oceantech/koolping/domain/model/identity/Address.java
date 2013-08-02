@@ -1,4 +1,4 @@
-package com.oceantech.koolping.domain.model;
+package com.oceantech.koolping.domain.model.identity;
 
 import lombok.Getter;
 import lombok.Setter;

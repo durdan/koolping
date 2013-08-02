@@ -117,11 +117,20 @@
             <name>SpringSource Repository</name>
             <url>http://repo.springsource.org/release</url>
         </repository>
+        
         <repository>
+          <snapshots />
+          <id>snapshots</id>
+          <name>libs-snapshot</name>
+          <url>http://repo.springsource.org/libs-snapshot</url>
+        </repository>
+        <!--repository>
             <id>spring-maven-snapshot</id>
             <name>Springframework Maven SNAPSHOT Repository</name>
             <url>http://maven.springframework.org/snapshot</url>
-        </repository>
+        </repository-->
+        
+        
     </repositories>
 
     <build>
