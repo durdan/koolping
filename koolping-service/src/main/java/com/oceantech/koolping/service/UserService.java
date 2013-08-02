@@ -1,6 +1,6 @@
 package com.oceantech.koolping.service;
 
-import com.oceantech.koolping.domain.model.User;
+import com.oceantech.koolping.domain.model.identity.User;
 import com.oceantech.koolping.infrastructure.persistence.UserRepository;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

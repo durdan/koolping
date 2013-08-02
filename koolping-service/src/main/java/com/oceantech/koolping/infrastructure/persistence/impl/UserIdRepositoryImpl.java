@@ -1,8 +1,7 @@
 package com.oceantech.koolping.infrastructure.persistence.impl;
 
 
-
-import com.oceantech.koolping.domain.model.UserId;
+import com.oceantech.koolping.domain.model.identity.UserId;
 import com.oceantech.koolping.infrastructure.persistence.UserIdRepository;
 
 import java.util.UUID;

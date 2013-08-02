@@ -1,6 +1,6 @@
 package com.oceantech.koolping.controller;
 
-import com.oceantech.koolping.domain.model.User;
+import com.oceantech.koolping.domain.model.identity.User;
 import com.oceantech.koolping.infrastructure.persistence.UserRepository;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -20,11 +20,9 @@ import java.util.Arrays;
 import static org.hamcrest.Matchers.containsString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.server.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.server.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.server.setup.MockMvcBuilders.standaloneSetup;
-import static org.springframework.test.web.server.result.MockMvcResultMatchers.view;
 import static org.springframework.test.web.server.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.server.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.server.setup.MockMvcBuilders.standaloneSetup;
 
 public class HomeControllerTest {
 

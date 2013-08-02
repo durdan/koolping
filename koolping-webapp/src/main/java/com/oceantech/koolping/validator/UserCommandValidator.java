@@ -2,7 +2,7 @@ package com.oceantech.koolping.validator;
 
 
 import com.oceantech.koolping.command.UserCommand;
-import com.oceantech.koolping.domain.model.Email;
+import com.oceantech.koolping.domain.model.identity.Email;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;

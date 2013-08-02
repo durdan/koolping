@@ -1,7 +1,7 @@
 package com.oceantech.koolping.command;
 
 
-import com.oceantech.koolping.domain.model.User;
+import com.oceantech.koolping.domain.model.identity.User;
 import org.testng.annotations.Test;
 
 import static org.hamcrest.CoreMatchers.is;

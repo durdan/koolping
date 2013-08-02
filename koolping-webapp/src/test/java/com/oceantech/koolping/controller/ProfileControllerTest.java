@@ -1,8 +1,8 @@
 package com.oceantech.koolping.controller;
 
 
-import com.oceantech.koolping.domain.model.User;
-import com.oceantech.koolping.domain.model.UserId;
+import com.oceantech.koolping.domain.model.identity.User;
+import com.oceantech.koolping.domain.model.identity.UserId;
 import com.oceantech.koolping.infrastructure.persistence.UserRepository;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;

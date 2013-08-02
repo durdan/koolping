@@ -1,10 +1,10 @@
 package com.oceantech.koolping.controller;
 
 import com.oceantech.koolping.command.UserCommand;
-import com.oceantech.koolping.domain.model.Email;
-import com.oceantech.koolping.domain.model.User;
-import com.oceantech.koolping.domain.model.UserId;
-import com.oceantech.koolping.domain.model.UserRoles;
+import com.oceantech.koolping.domain.model.identity.Email;
+import com.oceantech.koolping.domain.model.identity.User;
+import com.oceantech.koolping.domain.model.identity.UserId;
+import com.oceantech.koolping.domain.model.identity.UserRoles;
 import com.oceantech.koolping.infrastructure.persistence.UserIdRepository;
 import com.oceantech.koolping.infrastructure.persistence.UserRepository;
 import com.oceantech.koolping.infrastructure.persistence.UserRolesRepository;
@@ -24,17 +24,12 @@ import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
 
-
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.containsString;
 import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.server.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.server.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.server.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.server.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.server.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.server.setup.MockMvcBuilders.standaloneSetup;
 
 public class RegistrationControllerTest {

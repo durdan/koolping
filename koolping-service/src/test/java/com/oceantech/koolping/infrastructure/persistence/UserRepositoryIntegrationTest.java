@@ -1,10 +1,10 @@
 package com.oceantech.koolping.infrastructure.persistence;
 
 import com.oceantech.koolping.AbstractKoolpingRepositoryTest;
-import com.oceantech.koolping.domain.model.Address;
 import com.oceantech.koolping.domain.model.Country;
-import com.oceantech.koolping.domain.model.User;
-import com.oceantech.koolping.domain.model.UserId;
+import com.oceantech.koolping.domain.model.identity.Address;
+import com.oceantech.koolping.domain.model.identity.User;
+import com.oceantech.koolping.domain.model.identity.UserId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

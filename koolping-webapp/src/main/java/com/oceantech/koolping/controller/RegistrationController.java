@@ -1,10 +1,9 @@
 package com.oceantech.koolping.controller;
 
 
-
 import com.oceantech.koolping.command.UserCommand;
-import com.oceantech.koolping.domain.model.User;
-import com.oceantech.koolping.domain.model.UserRoles;
+import com.oceantech.koolping.domain.model.identity.User;
+import com.oceantech.koolping.domain.model.identity.UserRoles;
 import com.oceantech.koolping.infrastructure.persistence.UserIdRepository;
 import com.oceantech.koolping.infrastructure.persistence.UserRepository;
 import com.oceantech.koolping.infrastructure.persistence.UserRolesRepository;

@@ -1,8 +1,8 @@
 package com.oceantech.koolping.command;
 
 
-import com.oceantech.koolping.domain.model.Email;
-import com.oceantech.koolping.domain.model.User;
+import com.oceantech.koolping.domain.model.identity.Email;
+import com.oceantech.koolping.domain.model.identity.User;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 
 import java.util.Date;

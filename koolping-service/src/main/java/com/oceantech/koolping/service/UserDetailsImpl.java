@@ -1,6 +1,6 @@
 package com.oceantech.koolping.service;
 
-import com.oceantech.koolping.domain.model.User;
+import com.oceantech.koolping.domain.model.identity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

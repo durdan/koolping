@@ -1,6 +1,6 @@
 package com.oceantech.koolping.security;
 
-import com.oceantech.koolping.domain.model.User;
+import com.oceantech.koolping.domain.model.identity.User;
 import com.oceantech.koolping.service.UserDetailsImpl;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

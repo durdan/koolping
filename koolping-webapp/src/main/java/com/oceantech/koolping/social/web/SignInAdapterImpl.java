@@ -1,6 +1,6 @@
 package com.oceantech.koolping.social.web;
 
-import com.oceantech.koolping.domain.model.User;
+import com.oceantech.koolping.domain.model.identity.User;
 import com.oceantech.koolping.security.SecurityUtil;
 import com.oceantech.koolping.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

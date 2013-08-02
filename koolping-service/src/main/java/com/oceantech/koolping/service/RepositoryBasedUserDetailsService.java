@@ -1,6 +1,7 @@
 package com.oceantech.koolping.service;
 
 
+import com.oceantech.koolping.domain.model.identity.User;
 import com.oceantech.koolping.infrastructure.persistence.UserRepository;
 import com.oceantech.koolping.infrastructure.persistence.UserRolesRepository;
 import com.oceantech.koolping.security.SecurityUtil;
@@ -37,7 +38,7 @@ public class RepositoryBasedUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-            com.oceantech.koolping.domain.model.User domainUser = userRepository.findByUserName(username);
+            User domainUser = userRepository.findByUserName(username);
 
             if (domainUser == null) {
                 throw new UsernameNotFoundException("Could not find user with name '" + username + "'");

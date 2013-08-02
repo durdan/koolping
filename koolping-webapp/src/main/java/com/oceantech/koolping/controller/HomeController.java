@@ -1,6 +1,6 @@
 package com.oceantech.koolping.controller;
 
-import com.oceantech.koolping.domain.model.User;
+import com.oceantech.koolping.domain.model.identity.User;
 import com.oceantech.koolping.infrastructure.persistence.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

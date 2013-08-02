@@ -1,7 +1,7 @@
 package com.oceantech.koolping.infrastructure.persistence;
 
 import com.oceantech.koolping.AbstractKoolpingRepositoryTest;
-import com.oceantech.koolping.domain.model.UserRoles;
+import com.oceantech.koolping.domain.model.identity.UserRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Test;
 

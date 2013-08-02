@@ -1,5 +1,6 @@
 package com.oceantech.koolping.domain.model;
 
+import com.oceantech.koolping.domain.model.identity.UserId;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 

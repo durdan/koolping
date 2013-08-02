@@ -1,5 +1,7 @@
 package com.oceantech.koolping.domain.model;
 
+import com.oceantech.koolping.domain.model.identity.Address;
+import com.oceantech.koolping.domain.model.identity.Email;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;

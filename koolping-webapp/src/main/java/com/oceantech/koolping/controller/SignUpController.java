@@ -1,7 +1,7 @@
 package com.oceantech.koolping.controller;
 
-import com.oceantech.koolping.domain.model.Role;
-import com.oceantech.koolping.domain.model.User;
+import com.oceantech.koolping.domain.model.identity.Role;
+import com.oceantech.koolping.domain.model.identity.User;
 import com.oceantech.koolping.security.SecurityUtil;
 import com.oceantech.koolping.service.UserService;
 import org.apache.commons.logging.Log;
