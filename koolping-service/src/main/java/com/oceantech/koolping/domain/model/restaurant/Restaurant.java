@@ -10,14 +10,6 @@ import org.codehaus.jackson.annotate.JsonManagedReference;
 
 import javax.persistence.*;
 
-/**
- * Created with IntelliJ IDEA.
- * User: durdan
- * Date: 29/07/13
- * Time: 22:19
- * To change this template use File | Settings | File Templates.
- */
-
 @ToString(callSuper = true, exclude = "Id")
 @EqualsAndHashCode(callSuper = false)
 @Entity
