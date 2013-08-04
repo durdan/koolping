@@ -1,48 +1,43 @@
 package com.oceantech.koolping.domain.model.common;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+/**
+ * Created with IntelliJ IDEA.
+ * User: durdan
+ * Date: 31/07/13
+ * Time: 21:24
+ * To change this template use File | Settings | File Templates.
+ */
+
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @Entity
 public class Country {
 
+    @Getter
+    @Setter
     @Id
     private String countryCode;
-    private String name;
 
-    public String getCountryCode() {
-        return countryCode;
+    @Getter
+    @Setter
+    private String countryName;
+
+
+    public Country(String countryCode,String countryName) {
+        this.countryCode=countryCode;
+        this.countryName = countryName;
+
     }
 
-    public void setCountryCode(String countryCode) {
-        this.countryCode = countryCode;
-    }
+    public Country (){
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Country)) return false;
-
-        Country country = (Country) o;
-
-        if (countryCode != null ? !countryCode.equals(country.countryCode) : country.countryCode != null) return false;
-        if (name != null ? !name.equals(country.name) : country.name != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = countryCode != null ? countryCode.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        return result;
     }
 }

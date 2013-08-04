@@ -10,7 +10,7 @@
         <class>com.oceantech.koolping.domain.model.identity.UserRoles</class>
         <class>com.oceantech.koolping.domain.model.identity.Role</class>
         <class>com.oceantech.koolping.domain.model.identity.Email</class>
-        <class>com.oceantech.koolping.domain.model.Country</class>
+        <class>com.oceantech.koolping.domain.model.common.Country</class>
         <class>com.oceantech.koolping.domain.model.identity.Address</class>
         <class>com.oceantech.koolping.domain.model.RestaurantCuisineType</class>
         <class>com.oceantech.koolping.domain.model.Restaurant</class>

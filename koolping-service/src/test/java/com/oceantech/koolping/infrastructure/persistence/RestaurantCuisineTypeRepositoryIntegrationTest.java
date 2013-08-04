@@ -17,7 +17,7 @@ import static org.hamcrest.Matchers.notNullValue;
  * Time: 22:19
  * To change this template use File | Settings | File Templates.
  */
-public class RestaurantCuisineTypeRepositoryTest extends AbstractKoolpingRepositoryTest {
+public class RestaurantCuisineTypeRepositoryIntegrationTest extends AbstractKoolpingRepositoryTest {
 
     @Autowired
     private RestaurantCuisineTypeRepository restaurantCuisineTypeRepository;

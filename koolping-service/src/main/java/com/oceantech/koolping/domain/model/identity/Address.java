@@ -1,6 +1,6 @@
 package com.oceantech.koolping.domain.model.identity;
 
-import com.oceantech.koolping.domain.model.Country;
+import com.oceantech.koolping.domain.model.common.Country;
 import lombok.Getter;
 import lombok.Setter;
 import org.codehaus.jackson.annotate.JsonManagedReference;
@@ -61,11 +61,11 @@ public final class Address {
         this.zipcode = zipcode;
     }
 
-//    public String getCountrycode() {
-//        return countrycode;
-//    }
-//
-//    private void setCountrycode(String countrycode) {
-//        this.countrycode = countrycode;
-//    }
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
 }

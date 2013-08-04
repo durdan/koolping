@@ -10,7 +10,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.notNullValue;
 
-public class UserIdRepositoryTest extends AbstractKoolpingRepositoryTest {
+public class UserIdRepositoryIntegrationTest extends AbstractKoolpingRepositoryTest {
 
     @Autowired
     private UserIdRepository userIdRepository;
