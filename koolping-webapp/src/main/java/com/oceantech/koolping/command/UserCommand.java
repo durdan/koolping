@@ -5,9 +5,10 @@ import com.oceantech.koolping.domain.model.identity.Email;
 import com.oceantech.koolping.domain.model.identity.User;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class UserCommand {
+public class UserCommand implements Serializable {
 
     private Long id;
     private String username;
@@ -17,6 +18,18 @@ public class UserCommand {
     private String email;
     private String interests;
     private boolean enabled;
+
+
+
+    private Integer role;
+
+    public Integer getRole() {
+        return role;
+    }
+
+    public void setRole(Integer role) {
+        this.role = role;
+    }
 
     public UserCommand() {
     }

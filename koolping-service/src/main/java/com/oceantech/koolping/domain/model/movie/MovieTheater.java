@@ -1,5 +1,6 @@
 package com.oceantech.koolping.domain.model.movie;
 
+
 import com.oceantech.koolping.domain.model.common.Country;
 
 import javax.persistence.*;

@@ -1,9 +1,10 @@
-package com.oceantech.koolping.domain.model;
+package com.oceantech.koolping.domain.model.restaurant;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.joda.time.DateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,33 +12,31 @@ import javax.persistence.Id;
 /**
  * Created with IntelliJ IDEA.
  * User: durdan
- * Date: 31/07/13
- * Time: 21:24
+ * Date: 04/08/13
+ * Time: 22:35
  * To change this template use File | Settings | File Templates.
  */
 
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = false)
 @Entity
-public class Country {
+public class ReviewRestaurant {
 
     @Getter
     @Setter
     @Id
-    private String countryCode;
+    private ReviewRestaurantPK reviewRestaurantPK;
 
     @Getter
     @Setter
-    private String countryName;
+    private String IpAddress;
 
+    @Getter
+    @Setter
+    private DateTime reviewDate;
 
-    public Country(String countryCode,String countryName) {
-        this.countryCode=countryCode;
-        this.countryName = countryName;
+    @Getter
+    @Setter
+    private String ReviewRatingId;
 
-    }
-
-    public Country (){
-
-    }
 }

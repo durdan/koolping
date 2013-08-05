@@ -1,4 +1,4 @@
-package com.oceantech.koolping.domain.model;
+package com.oceantech.koolping.domain.model.restaurant;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

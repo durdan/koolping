@@ -1,6 +1,6 @@
 package com.oceantech.koolping.domain.model.identity;
 
-import com.oceantech.koolping.domain.model.Country;
+import com.oceantech.koolping.domain.model.common.Country;
 import lombok.Getter;
 import lombok.Setter;
 import org.codehaus.jackson.annotate.JsonManagedReference;

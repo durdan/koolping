@@ -1,7 +1,7 @@
 package com.oceantech.koolping.infrastructure.persistence;
 
 import com.oceantech.koolping.AbstractKoolpingRepositoryTest;
-import com.oceantech.koolping.domain.model.Country;
+import com.oceantech.koolping.domain.model.common.Country;
 import com.oceantech.koolping.domain.model.identity.Address;
 import com.oceantech.koolping.domain.model.identity.User;
 import com.oceantech.koolping.domain.model.identity.UserId;

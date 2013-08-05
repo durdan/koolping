@@ -29,6 +29,10 @@ public class User {
     private Address address;
     private boolean enabled;
 
+    @JsonManagedReference
+    @OneToOne(mappedBy = "user", cascade = {CascadeType.ALL})
+    private Role role;
+
     public Role getRole() {
         return role;
     }
@@ -37,31 +41,28 @@ public class User {
         this.role = role;
     }
 
-    @JsonManagedReference
-    @OneToOne(mappedBy = "user", cascade = {CascadeType.ALL})
-    private Role role;
 
+    public User() {
+    }
 
-    public User() {}
+    public User(String username, String password, String firstName, String lastName, Role role) {
+        this.userName = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.role = role;
+    }
 
-    	public User(String username, String password, String firstName, String lastName, Role role) {
-    		this.userName = username;
-    		this.password = password;
-    		this.firstName = firstName;
-    		this.lastName = lastName;
-    		this.role = role;
-    	}
+    public User(String username, String firstName, String lastName, Role role) {
+        this.userName = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.role = role;
+    }
 
-    	public User(String username, String firstName, String lastName, Role role) {
-    		this.userName = username;
-    		this.firstName = firstName;
-    		this.lastName = lastName;
-    		this.role = role;
-    	}
-
-    	public User(String username) {
-    		this.userName = username;
-    	}
+    public User(String username) {
+        this.userName = username;
+    }
 
     public Long getId() {
         return id;

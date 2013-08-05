@@ -1,7 +1,8 @@
-package com.oceantech.koolping.infrastructure.persistence;
+package com.oceantech.koolping.infrastructure.persistence.restaurant;
 
 import com.oceantech.koolping.AbstractKoolpingRepositoryTest;
-import com.oceantech.koolping.domain.model.RestaurantCuisineType;
+import com.oceantech.koolping.domain.model.restaurant.RestaurantCuisineType;
+import com.oceantech.koolping.infrastructure.persistence.restaurant.RestaurantCuisineTypeRepository;
 import org.hamcrest.Matchers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Test;

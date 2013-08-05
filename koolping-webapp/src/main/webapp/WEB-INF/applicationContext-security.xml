@@ -12,6 +12,7 @@
 
     <http pattern="/resources" security="none"/>
     <http auto-config="true" access-denied-page="/error/401.html" use-expressions="true">
+        <intercept-url pattern="/users*" access="isAnonymous()"/>
         <intercept-url pattern="/home" access="hasRole('ROLE_USER')"/>
         <intercept-url pattern="/profile" access="hasRole('ROLE_USER')"/>
         <intercept-url pattern="/fb/profile" access="permitAll"/>

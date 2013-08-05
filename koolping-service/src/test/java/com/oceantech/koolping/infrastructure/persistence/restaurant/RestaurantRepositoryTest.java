@@ -1,10 +1,12 @@
-package com.oceantech.koolping.infrastructure.persistence;
+package com.oceantech.koolping.infrastructure.persistence.restaurant;
 
 import com.oceantech.koolping.AbstractKoolpingRepositoryTest;
-import com.oceantech.koolping.domain.model.Country;
-import com.oceantech.koolping.domain.model.Restaurant;
-import com.oceantech.koolping.domain.model.RestaurantCuisineType;
+import com.oceantech.koolping.domain.model.common.Country;
+import com.oceantech.koolping.domain.model.restaurant.Restaurant;
+import com.oceantech.koolping.domain.model.restaurant.RestaurantCuisineType;
 import com.oceantech.koolping.domain.model.identity.Address;
+import com.oceantech.koolping.infrastructure.persistence.CountryRepository;
+import com.oceantech.koolping.infrastructure.persistence.restaurant.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Test;
 
