@@ -53,7 +53,11 @@ public class UserService {
         // Only firstName, lastName, and role fields are updatable
         existingUser.setFirstName(user.getFirstName());
         existingUser.setLastName(user.getLastName());
-        existingUser.getRole().setRole(user.getRole().getRole());
+        if(user.getRole()==null){
+            logger.info(" Role is null");
+        }
+        logger.info(" Role is " +user.getRole());
+        existingUser.setRole(user.getRole());
         if (user.getPassword() == null) {
             String password = generatePassword();
             user.setPassword(password);

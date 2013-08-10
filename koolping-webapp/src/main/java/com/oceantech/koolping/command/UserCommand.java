@@ -18,10 +18,11 @@ public class UserCommand implements Serializable {
     private String email;
     private String interests;
     private boolean enabled;
-
-
-
     private Integer role;
+
+
+
+
 
     public Integer getRole() {
         return role;

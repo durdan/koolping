@@ -27,11 +27,11 @@ public class Restaurant {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Getter
     @Setter
-    private Long RestaurantId;
+    private Long restaurantId;
 
     @Getter
     @Setter
-    private String RestaurantName;
+    private String restaurantName;
 
     @Getter
     @Setter
