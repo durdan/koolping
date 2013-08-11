@@ -61,11 +61,10 @@ public final class Address {
         this.zipcode = zipcode;
     }
 
-//    public String getCountrycode() {
-//        return countrycode;
-//    }
-//
-//    private void setCountrycode(String countrycode) {
-//        this.countrycode = countrycode;
-//    }
+    public Country getCountry() {
+        return country;
+    }
+    public void setCountry(Country country) {
+        this.country = country;
+    }
 }

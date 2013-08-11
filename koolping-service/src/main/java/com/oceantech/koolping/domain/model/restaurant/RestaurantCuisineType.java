@@ -10,13 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-/**
- * Created with IntelliJ IDEA.
- * User: durdan
- * Date: 30/07/13
- * Time: 21:24
- * To change this template use File | Settings | File Templates.
- */
 
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = false)

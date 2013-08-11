@@ -17,7 +17,7 @@ import static org.hamcrest.Matchers.notNullValue;
  * Time: 10:53
  * To change this template use File | Settings | File Templates.
  */
-public class RoleRepositoryTest extends AbstractKoolpingRepositoryTest {
+public class RoleRepositoryIntegrationTest extends AbstractKoolpingRepositoryTest {
 
     @Autowired
     private RoleRepository repository;
