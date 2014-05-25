@@ -12,10 +12,10 @@ public class ItemResourceTest {
     public void shouldConstructItemResource() {
         ItemResource resource = new ItemResource();
         resource.setItemRef("urn:items:1");
-        resource.setName("item");
+        resource.setPlaceId("42377700f964a52024201fe3");
 
         assertThat(resource).isNotNull();
         assertThat(resource.getItemRef()).isEqualTo("urn:items:1");
-        assertThat(resource.getName()).isEqualTo("item");
+        assertThat(resource.getPlaceId()).isEqualTo("42377700f964a52024201fe3");
     }
 }

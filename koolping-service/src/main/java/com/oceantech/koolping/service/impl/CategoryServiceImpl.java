@@ -39,6 +39,11 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    public Category findByName(String name) {
+        return categoryRepository.findByName(name);
+    }
+
+    @Override
     public Category create(Category category) {
         Category exitedCategory = categoryRepository.findByName(category.getName().trim());
         if(exitedCategory == null){

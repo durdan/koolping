@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 public interface ItemService {
     Page<Item> findAll();
     Item findById(final Long id);
+    Item findByPlaceId(final String placeId);
     Item create(final Item item);
     Item update(final Item item);
     void delete(final Item item);

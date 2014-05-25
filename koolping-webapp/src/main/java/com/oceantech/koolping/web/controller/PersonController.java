@@ -4,31 +4,27 @@ import com.oceantech.koolping.annotation.BoundaryController;
 import com.oceantech.koolping.api.ApplicationProtocol;
 import com.oceantech.koolping.api.resource.*;
 
+import com.oceantech.koolping.domain.Category;
 import com.oceantech.koolping.domain.Item;
 import com.oceantech.koolping.domain.Person;
 import com.oceantech.koolping.domain.Rate;
+import com.oceantech.koolping.service.CategoryService;
 import com.oceantech.koolping.service.ItemService;
 import com.oceantech.koolping.service.PersonService;
 
 import com.oceantech.koolping.service.RateService;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.neo4j.conversion.EndResult;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
-import static com.oceantech.koolping.web.controller.PersonAssembler.toPerson;
-import static com.oceantech.koolping.web.controller.PersonAssembler.toResource;
-import static com.oceantech.koolping.web.controller.PersonAssembler.toResources;
+import static com.oceantech.koolping.web.controller.PersonAssembler.*;
 
 /**
  * Controller for managing users
@@ -46,19 +42,60 @@ public class PersonController {
     private ItemService itemService;
     @Autowired
     private RateService rateService;
+    @Autowired
+    private CategoryService categoryService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public HttpEntity<PersonResourceCollection> getPersons(){
+    public HttpEntity<PersonResourceCollection> getPersons(@RequestParam("username")String username,
+                                                           @RequestParam("facebookId")String facebookId,
+                                                           @RequestParam("twitterId")String twitterId,
+                                                           @RequestParam("googlePlusId")String googlePlusId){
 
-        List<Person> persons = personService.findAll();
+        List<Person> persons = new ArrayList<>();
+        Person person;
+        if(StringUtils.isNotBlank(username)){
+            person = personService.findByUsername(username.trim());
+            if(person != null){
+                persons = Arrays.asList(person);
+            }
+        } else if(StringUtils.isNotBlank(facebookId)){
+            person = personService.findByFacebookId(facebookId.trim());
+            if(person != null){
+                persons = Arrays.asList(person);
+            }
+        } else if(StringUtils.isNotBlank(twitterId)){
+            person = personService.findByTwitterId(twitterId.trim());
+            if(person != null){
+                persons = Arrays.asList(person);
+            }
+        } else if(StringUtils.isNotBlank(googlePlusId)){
+            person = personService.findByGoogleplusId(googlePlusId.trim());
+            if(person != null){
+                persons = Arrays.asList(person);
+            }
+        }
 
-        PersonResourceCollection collection = new PersonResourceCollection(toResources(persons));
+        PersonResourceCollection collection = new PersonResourceCollection();
+
+        if(persons.size() > 0){
+            collection = new PersonResourceCollection(toResources(persons));
+            collection.setPageSize(persons.size());
+            collection.setTotalPages(persons.size());
+            collection.setReturnedItems(persons.size());
+            collection.setTotalItems(persons.size());
+        }
 
         collection.add(ControllerLinkBuilder.
                 linkTo(ControllerLinkBuilder.
                         methodOn(PersonController.class).
-                        getPersonForm()).
-                withRel(ApplicationProtocol.PERSON_FORM));
+                        getPersons(username, facebookId, twitterId, googlePlusId))
+                .withSelfRel());
+
+        collection.add(ControllerLinkBuilder.
+                linkTo(ControllerLinkBuilder.
+                        methodOn(PersonController.class).
+                        getPersonForm())
+                .withRel(ApplicationProtocol.PERSON_FORM));
 
         return new ResponseEntity<>(collection, HttpStatus.OK);
     }
@@ -68,25 +105,7 @@ public class PersonController {
 
         Person person = personService.findById(personId);
         PersonResource resource = toResource(person);
-
-        resource.add(ControllerLinkBuilder.
-                linkTo(ControllerLinkBuilder.
-                        methodOn(PersonController.class).
-                        getFriends(person.getId()))
-                .withRel(ApplicationProtocol.FRIENDS));
-
-        resource.add(ControllerLinkBuilder.
-                linkTo(ControllerLinkBuilder.
-                        methodOn(PersonController.class).
-                        getItemsForRating(person.getId()))
-                .withRel(ApplicationProtocol.RATE_ITEM));
-
-        resource.add(ControllerLinkBuilder.
-                linkTo(ControllerLinkBuilder.
-                        methodOn(PersonController.class).
-                        deletePerson(person.getId()))
-                .withRel(ApplicationProtocol.DELETE_PERSON));
-
+        resource = addLinks(person, resource);
         return new ResponseEntity<>(resource, HttpStatus.OK);
     }
 
@@ -105,7 +124,82 @@ public class PersonController {
     public HttpEntity<PersonResource> createPerson(@RequestBody PersonForm form){
         Person person = personService.create(toPerson(form));
         PersonResource resource = toResource(person);
+        resource = addLinks(person, resource);
         return new ResponseEntity<>(resource, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value = "/{personId}", method = RequestMethod.PUT)
+    public HttpEntity<RatedItemResource> rateAVenue(@PathVariable("personId")Long personId,
+                                                   @RequestParam("categoryName")String categoryName,
+                                                   @RequestParam("placeId")String placeId,
+                                                   @RequestParam("rating")String rating){
+
+        Person person = personService.findById(personId);
+        Category category = getACategory(categoryName);
+        Item item = getAnItem(placeId, category);
+        Rate rate = new Rate(person, item, rating);
+
+        Rate newRating = rateService.createOrUpdate(rate);
+
+        RatedItemResource resource = toRatedItemResource(newRating);
+
+        resource.add(ControllerLinkBuilder.
+                linkTo(ControllerLinkBuilder.
+                        methodOn(PersonController.class).
+                        rateAVenue(personId, categoryName, placeId, rating))
+                .withSelfRel());
+
+        resource.add(ControllerLinkBuilder.
+                linkTo(ControllerLinkBuilder.
+                        methodOn(PersonController.class).
+                        getPerson(personId))
+                .withRel(ApplicationProtocol.PERSON));
+
+        resource.add(ControllerLinkBuilder.
+                linkTo(ControllerLinkBuilder.
+                        methodOn(ItemController.class).
+                        getItem(item.getId()))
+                .withRel(ApplicationProtocol.ITEM));
+
+        return new ResponseEntity<>(resource, HttpStatus.OK);
+    }
+
+    private Category getACategory(String categoryName){
+        Category category = categoryService.findByName(categoryName.trim());
+        if(category == null){
+            Category newCategory = new Category();
+            newCategory.setName(categoryName);
+            category = categoryService.create(newCategory);
+        }
+        return category;
+    }
+
+    private Item getAnItem(String placeId, Category category){
+        Item item = itemService.findByPlaceId(placeId.trim());
+        if(item == null){
+            Item newItem = new Item();
+            newItem.setPlaceId(placeId);
+            Set<Category> categories = new HashSet<>();
+            categories.add(category);
+            newItem.setCategories(categories);
+            item = itemService.create(newItem);
+        }
+        return item;
+    }
+
+    private RatedItemResource toRatedItemResource(Rate rate){
+        RatedItemResource resource = new RatedItemResource();
+        resource.setItemRef("urn:items:"+rate.getItem().getId());
+        resource.setPlaceId(rate.getItem().getPlaceId());
+        if (!rate.getItem().getCategories().isEmpty()) {
+            Set<String> categories = new LinkedHashSet<>(rate.getItem().getCategories().size());
+            for (Category itemCategory : rate.getItem().getCategories()) {
+                categories.add(itemCategory.getName());
+            }
+            resource.setCategories(categories);
+        }
+        resource.setMyRating(rate.getRating());
+        return resource;
     }
 
     @RequestMapping(value = "/{personId}/friends", method = RequestMethod.GET)
@@ -129,73 +223,5 @@ public class PersonController {
         Person person = personService.findById(personId);
         personService.delete(person);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-
-    @RequestMapping(value = "/{personId}/itemsforrating", method = RequestMethod.GET)
-    public HttpEntity<SelectorResource> getItemsForRating(@PathVariable("personId")Long personId){
-
-        Person person = personService.findById(personId);
-        SelectorResource resource = new SelectorResource();
-
-        Page<Item> itemPage = itemService.findAll();
-        List<ChoiceResource> choices = new ArrayList<>();
-        for(Item item : itemPage.getContent()){
-            ChoiceResource choice = new ChoiceResource();
-            choice.setName(item.getPlaceId());
-
-            choice.add(ControllerLinkBuilder.
-                    linkTo(ControllerLinkBuilder.
-                            methodOn(PersonController.class).
-                            rateAnItem(person.getId(), item.getId(), 1))
-                    .withRel(ApplicationProtocol.ONE_STAR));
-
-            choice.add(ControllerLinkBuilder.
-                    linkTo(ControllerLinkBuilder.
-                            methodOn(PersonController.class).
-                            rateAnItem(person.getId(), item.getId(), 2))
-                    .withRel(ApplicationProtocol.TWO_STAR));
-
-            choice.add(ControllerLinkBuilder.
-                    linkTo(ControllerLinkBuilder.
-                            methodOn(PersonController.class).
-                            rateAnItem(person.getId(), item.getId(), 3))
-                    .withRel(ApplicationProtocol.THREE_STAR));
-
-            choices.add(choice);
-        }
-
-        resource.setChoiceResources(choices);
-
-        resource.add(ControllerLinkBuilder.
-                linkTo(ControllerLinkBuilder.
-                        methodOn(PersonController.class).
-                        getItemsForRating(person.getId()))
-                .withSelfRel());
-
-        resource.add(ControllerLinkBuilder.
-                linkTo(ControllerLinkBuilder.
-                        methodOn(PersonController.class).
-                        getPerson(person.getId()))
-                .withRel(ApplicationProtocol.PERSON));
-
-        return new ResponseEntity<>(resource, HttpStatus.OK);
-    }
-
-
-
-    @RequestMapping(value = "/{personId}/items/{itemId}/rating/{star}", method = RequestMethod.PUT)
-    public HttpEntity<SelectorResource> rateAnItem(@PathVariable("personId")Long personId, @PathVariable("itemId")Long itemId, @PathVariable("star")Integer star){
-
-        Person person = personService.findById(personId);
-        Item item = itemService.findById(itemId);
-
-        Rate rate = new Rate(person, item, star);
-
-        rateService.createOrUpdate(rate);
-
-        SelectorResource resource = new SelectorResource();
-
-
-        return new ResponseEntity<>(resource, HttpStatus.OK);
     }
 }

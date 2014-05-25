@@ -79,7 +79,7 @@ public class RateServiceImplTest {
         rate.setId(id);
         rate.setItem(new Item());
         rate.setPerson(new Person());
-        rate.setStar(2);
+        rate.setRating("green");
         return rate;
     }
 }

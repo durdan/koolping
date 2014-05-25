@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataRetrievalFailureException;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -41,8 +42,41 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
+    public Person findByUsername(String username) {
+        return personRepository.findByUsername(username.trim());
+    }
+
+    @Override
+    public Person findByFacebookId(String facebookId) {
+        return personRepository.findByFacebookId(facebookId.trim());
+    }
+
+    @Override
+    public Person findByTwitterId(String twitterId) {
+        return personRepository.findByTwitterId(twitterId.trim());
+    }
+
+    @Override
+    public Person findByGoogleplusId(String googleplusId) {
+        return personRepository.findByGoogleplusId(googleplusId.trim());
+    }
+
+    @Override
     public Person create(final Person person) {
-        Person exitedPerson = personRepository.findByUsername(person.getUsername().trim());
+        Person exitedPerson = null;
+        if(!StringUtils.isEmpty(person.getUsername())){
+            exitedPerson = findByUsername(person.getUsername());
+        }
+        if((exitedPerson == null) && (!StringUtils.isEmpty(person.getFacebookId()))){
+            exitedPerson = findByFacebookId(person.getFacebookId());
+        }
+        if((exitedPerson == null) && (!StringUtils.isEmpty(person.getTwitterId()))){
+            exitedPerson = findByTwitterId(person.getTwitterId());
+        }
+        if((exitedPerson == null) && (!StringUtils.isEmpty(person.getGoogleplusId()))){
+            exitedPerson = findByGoogleplusId(person.getGoogleplusId());
+        }
+
         if(exitedPerson == null){
             Person savedPerson = personRepository.save(person);
             LOGGER.info("Person is created {}", savedPerson);

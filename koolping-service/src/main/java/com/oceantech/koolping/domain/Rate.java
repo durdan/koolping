@@ -1,9 +1,6 @@
 package com.oceantech.koolping.domain;
 
-import org.springframework.data.neo4j.annotation.EndNode;
-import org.springframework.data.neo4j.annotation.GraphId;
-import org.springframework.data.neo4j.annotation.RelationshipEntity;
-import org.springframework.data.neo4j.annotation.StartNode;
+import org.springframework.data.neo4j.annotation.*;
 
 /**
  * @author Sanjoy Roy
@@ -16,17 +13,18 @@ public class Rate {
     @StartNode
     private Person person;
     @EndNode
+    @Fetch
     private Item item;
 
-    private int star;
+    private String rating;
 
     public Rate() {
     }
 
-    public Rate(Person person, Item item, int star) {
+    public Rate(Person person, Item item, String rating) {
         this.person = person;
         this.item = item;
-        this.star = star;
+        this.rating = rating;
     }
 
     public Long getId() {
@@ -53,12 +51,12 @@ public class Rate {
         this.item = item;
     }
 
-    public int getStar() {
-        return star;
+    public String getRating() {
+        return rating;
     }
 
-    public void setStar(int star) {
-        this.star = star;
+    public void setRating(String rating) {
+        this.rating = rating;
     }
 
     @Override
@@ -89,7 +87,7 @@ public class Rate {
                 "id=" + id +
                 ", person=" + person +
                 ", item=" + item +
-                ", star=" + star +
+                ", rating='" + rating + '\'' +
                 '}';
     }
 }

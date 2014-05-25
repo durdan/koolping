@@ -66,6 +66,20 @@ public class ItemServiceImplTest {
     }
 
     @Test
+    public void shouldFindByPlaceId(){
+        Item item = getOne(100L);
+        item.setPlaceId("ABC");
+        when(mockItemRepository.findByPlaceId("ABC")).thenReturn(item);
+
+        Item actual = itemService.findByPlaceId("ABC");
+
+        assertThat(actual).isNotNull();
+        assertThat(actual.getId()).isEqualTo(100);
+        assertThat(actual.getPlaceId()).isEqualTo("ABC");
+        verify(mockItemRepository).findByPlaceId("ABC");
+    }
+
+    @Test
     public void shouldCreate(){
         Item item = getOne(100L);
         item.setPlaceId("placeid");

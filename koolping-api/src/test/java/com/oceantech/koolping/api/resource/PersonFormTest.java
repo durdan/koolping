@@ -19,6 +19,9 @@ public class PersonFormTest {
         form.setGender("male");
         form.setPassword("password");
         form.setUsername("username");
+        form.setFacebookId("facebookId");
+        form.setTwitterId("twitterId");
+        form.setGoogleplusId("googleplusId");
 
         assertThat(form).isNotNull();
         assertThat(form.getBirthDate()).isEqualTo("12/08/1978");
@@ -28,5 +31,8 @@ public class PersonFormTest {
         assertThat(form.getGender()).isEqualTo("male");
         assertThat(form.getPassword()).isEqualTo("password");
         assertThat(form.getUsername()).isEqualTo("username");
+        assertThat(form.getFacebookId()).isEqualTo("facebookId");
+        assertThat(form.getTwitterId()).isEqualTo("twitterId");
+        assertThat(form.getGoogleplusId()).isEqualTo("googleplusId");
     }
 }

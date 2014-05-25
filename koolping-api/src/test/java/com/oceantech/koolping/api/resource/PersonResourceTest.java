@@ -19,6 +19,9 @@ public class PersonResourceTest {
         resource.setLastName("last");
         resource.setGender("male");
         resource.setUsername("username");
+        resource.setFacebookId("facebookId");
+        resource.setTwitterId("twitterId");
+        resource.setGoogleplusId("googleplusId");
 
         assertThat(resource).isNotNull();
         assertThat(resource.getPersonRef()).isEqualTo("urn:persons:1");
@@ -28,5 +31,8 @@ public class PersonResourceTest {
         assertThat(resource.getLastName()).isEqualTo("last");
         assertThat(resource.getGender()).isEqualTo("male");
         assertThat(resource.getUsername()).isEqualTo("username");
+        assertThat(resource.getFacebookId()).isEqualTo("facebookId");
+        assertThat(resource.getTwitterId()).isEqualTo("twitterId");
+        assertThat(resource.getGoogleplusId()).isEqualTo("googleplusId");
     }
 }

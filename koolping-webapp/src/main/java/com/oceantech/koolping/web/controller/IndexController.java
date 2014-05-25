@@ -38,8 +38,14 @@ public class IndexController {
         resource.add(ControllerLinkBuilder.
                 linkTo(ControllerLinkBuilder.
                         methodOn(PersonController.class).
-                        getPersons()).
+                        getPersons("", "", "", "")).
                 withRel(ApplicationProtocol.PERSONS));
+
+        resource.add(ControllerLinkBuilder.
+                linkTo(ControllerLinkBuilder.
+                        methodOn(PersonController.class).
+                        getPersonForm()).
+                withRel(ApplicationProtocol.PERSON_FORM));
 
         return new ResponseEntity<>(resource, HttpStatus.OK);
     }

@@ -86,6 +86,42 @@ public class PersonRepositoryTest extends AbstractKoolPingRepositoryTest {
     }
 
     @Test
+    public void shouldFindByFacebookId(){
+        Person person = new Person();
+        person.setFacebookId("asdaseeqrewwr232fasd");
+        personRepository.save(person);
+
+        Person actual = personRepository.findByFacebookId("asdaseeqrewwr232fasd");
+
+        assertThat(actual).isNotNull();
+        assertThat(actual.getFacebookId()).isEqualTo("asdaseeqrewwr232fasd");
+    }
+
+    @Test
+    public void shouldFindByTwitterId(){
+        Person person = new Person();
+        person.setTwitterId("asdaseeqrewwr232fasd");
+        personRepository.save(person);
+
+        Person actual = personRepository.findByTwitterId("asdaseeqrewwr232fasd");
+
+        assertThat(actual).isNotNull();
+        assertThat(actual.getTwitterId()).isEqualTo("asdaseeqrewwr232fasd");
+    }
+
+    @Test
+    public void shouldFindByGoogleplusId(){
+        Person person = new Person();
+        person.setGoogleplusId("asdaseeqrewwr232fasd");
+        personRepository.save(person);
+
+        Person actual = personRepository.findByGoogleplusId("asdaseeqrewwr232fasd");
+
+        assertThat(actual).isNotNull();
+        assertThat(actual.getGoogleplusId()).isEqualTo("asdaseeqrewwr232fasd");
+    }
+
+    @Test
     public void shouldSaveFriend(){
         Person smith = new Person();
         smith.setFirstName("John");

@@ -14,6 +14,9 @@ public class PersonForm extends ResourceSupport {
     private String email = "";
     private String birthDate = "";
     private String gender = "";
+    private String facebookId = "";
+    private String twitterId = "";
+    private String googleplusId = "";
 
     public String getUsername() {
         return username;
@@ -71,15 +74,43 @@ public class PersonForm extends ResourceSupport {
         this.gender = gender;
     }
 
+    public String getFacebookId() {
+        return facebookId;
+    }
+
+    public void setFacebookId(String facebookId) {
+        this.facebookId = facebookId;
+    }
+
+    public String getTwitterId() {
+        return twitterId;
+    }
+
+    public void setTwitterId(String twitterId) {
+        this.twitterId = twitterId;
+    }
+
+    public String getGoogleplusId() {
+        return googleplusId;
+    }
+
+    public void setGoogleplusId(String googleplusId) {
+        this.googleplusId = googleplusId;
+    }
+
     @Override
     public String toString() {
         return "PersonForm{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", birthDate='" + birthDate + '\'' +
                 ", gender='" + gender + '\'' +
+                ", facebookId='" + facebookId + '\'' +
+                ", twitterId='" + twitterId + '\'' +
+                ", googleplusId='" + googleplusId + '\'' +
                 '}';
     }
 }

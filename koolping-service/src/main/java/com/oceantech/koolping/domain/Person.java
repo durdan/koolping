@@ -13,6 +13,7 @@ public class Person {
 
     @GraphId
     private Long id;
+    @Indexed
     private String username;
     private String password;
     private String firstName;
@@ -20,6 +21,9 @@ public class Person {
     private String email;
     private Date birthDate;
     private String gender;
+    private String facebookId;
+    private String twitterId;
+    private String googleplusId;
 
     public Person() {
     }
@@ -110,6 +114,30 @@ public class Person {
         this.ratings = ratings;
     }
 
+    public String getFacebookId() {
+        return facebookId;
+    }
+
+    public void setFacebookId(String facebookId) {
+        this.facebookId = facebookId;
+    }
+
+    public String getTwitterId() {
+        return twitterId;
+    }
+
+    public void setTwitterId(String twitterId) {
+        this.twitterId = twitterId;
+    }
+
+    public String getGoogleplusId() {
+        return googleplusId;
+    }
+
+    public void setGoogleplusId(String googleplusId) {
+        this.googleplusId = googleplusId;
+    }
+
     public void knows(Person person) {
         if (friends == null) {
             friends = new HashSet<>();
@@ -147,6 +175,9 @@ public class Person {
                 ", email='" + email + '\'' +
                 ", birthDate=" + birthDate +
                 ", gender='" + gender + '\'' +
+                ", facebookId='" + facebookId + '\'' +
+                ", twitterId='" + twitterId + '\'' +
+                ", googleplusId='" + googleplusId + '\'' +
                 ", friends=" + friends +
                 ", ratings=" + ratings +
                 '}';

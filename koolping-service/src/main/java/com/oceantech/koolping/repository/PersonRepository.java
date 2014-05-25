@@ -11,4 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(propagation = Propagation.MANDATORY, readOnly = false)
 public interface PersonRepository  extends GraphRepository<Person> {
     Person findByUsername(String username);
+    Person findByFacebookId(String facebookId);
+    Person findByTwitterId(String twitterId);
+    Person findByGoogleplusId(String googleplusId);
 }

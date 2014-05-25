@@ -38,6 +38,11 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    public Item findByPlaceId(String placeId) {
+        return itemRepository.findByPlaceId(placeId);
+    }
+
+    @Override
     public Item create(final Item item) {
         return save(item);
     }

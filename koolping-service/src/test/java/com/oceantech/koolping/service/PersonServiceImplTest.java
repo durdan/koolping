@@ -66,6 +66,62 @@ public class PersonServiceImplTest {
     }
 
     @Test
+    public void shouldFindByUsername(){
+        Person person = getOne(100L);
+        person.setUsername("username");
+        when(mockPersonRepository.findByUsername("username")).thenReturn(person);
+
+        Person actual = personService.findByUsername("username");
+
+        assertThat(actual).isNotNull();
+        assertThat(actual.getId()).isEqualTo(100);
+        assertThat(actual.getUsername()).isEqualTo("username");
+        verify(mockPersonRepository).findByUsername("username");
+    }
+
+    @Test
+    public void shouldFindByFacebookId(){
+        Person person = getOne(100L);
+        person.setFacebookId("asasdsdsdada");
+        when(mockPersonRepository.findByFacebookId("asasdsdsdada")).thenReturn(person);
+
+        Person actual = personService.findByFacebookId("asasdsdsdada");
+
+        assertThat(actual).isNotNull();
+        assertThat(actual.getId()).isEqualTo(100);
+        assertThat(actual.getFacebookId()).isEqualTo("asasdsdsdada");
+        verify(mockPersonRepository).findByFacebookId("asasdsdsdada");
+    }
+
+    @Test
+    public void shouldFindByTwitterId(){
+        Person person = getOne(100L);
+        person.setTwitterId("asasdsdsdada");
+        when(mockPersonRepository.findByTwitterId("asasdsdsdada")).thenReturn(person);
+
+        Person actual = personService.findByTwitterId("asasdsdsdada");
+
+        assertThat(actual).isNotNull();
+        assertThat(actual.getId()).isEqualTo(100);
+        assertThat(actual.getTwitterId()).isEqualTo("asasdsdsdada");
+        verify(mockPersonRepository).findByTwitterId("asasdsdsdada");
+    }
+
+    @Test
+    public void shouldFindByGoogleplusId(){
+        Person person = getOne(100L);
+        person.setGoogleplusId("asasdsdsdada");
+        when(mockPersonRepository.findByGoogleplusId("asasdsdsdada")).thenReturn(person);
+
+        Person actual = personService.findByGoogleplusId("asasdsdsdada");
+
+        assertThat(actual).isNotNull();
+        assertThat(actual.getId()).isEqualTo(100);
+        assertThat(actual.getGoogleplusId()).isEqualTo("asasdsdsdada");
+        verify(mockPersonRepository).findByGoogleplusId("asasdsdsdada");
+    }
+
+    @Test
     public void shouldCreate(){
         Person person = getOne(100L);
         person.setUsername("username");

@@ -33,14 +33,14 @@ public class RateRepositoryTest extends AbstractKoolPingRepositoryTest {
         Rate rate = new Rate();
         rate.setPerson(person);
         rate.setItem(item);
-        rate.setStar(1);
+        rate.setRating("green");
 
         Rate actual = rateRepository.save(rate);
 
         assertThat(actual).isNotNull();
         assertThat(actual.getPerson()).isNotNull();
         assertThat(actual.getItem()).isNotNull();
-        assertThat(actual.getStar()).isEqualTo(1);
+        assertThat(actual.getRating()).isEqualTo("green");
     }
 
     @Test
@@ -50,7 +50,7 @@ public class RateRepositoryTest extends AbstractKoolPingRepositoryTest {
         Rate rate = new Rate();
         rate.setPerson(person);
         rate.setItem(item);
-        rate.setStar(1);
+        rate.setRating("green");
         Rate savedRate = rateRepository.save(rate);
 
         Rate actual = rateRepository.findOne(savedRate.getId());
@@ -66,12 +66,12 @@ public class RateRepositoryTest extends AbstractKoolPingRepositoryTest {
         Rate rate1 = new Rate();
         rate1.setPerson(person);
         rate1.setItem(item);
-        rate1.setStar(1);
+        rate1.setRating("green");
         rateRepository.save(rate1);
         Rate rate2 = new Rate();
         rate2.setPerson(person);
         rate2.setItem(item);
-        rate2.setStar(1);
+        rate2.setRating("red");
         rateRepository.save(rate2);
 
         EndResult<Rate> rates = rateRepository.findAll();
@@ -85,7 +85,7 @@ public class RateRepositoryTest extends AbstractKoolPingRepositoryTest {
         Rate rate = new Rate();
         rate.setPerson(person);
         rate.setItem(item);
-        rate.setStar(1);
+        rate.setRating("green");
         Rate savedRate = rateRepository.save(rate);
 
         rateRepository.delete(savedRate);

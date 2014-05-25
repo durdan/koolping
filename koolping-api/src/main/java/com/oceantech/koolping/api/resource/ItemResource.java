@@ -14,7 +14,6 @@ public class ItemResource extends ResourceSupport {
 
     private String itemRef = "";
     private String placeId = "";
-    private String name = "";
     private Set<String> categories = new LinkedHashSet<>();
 
     public String getItemRef() {
@@ -33,14 +32,6 @@ public class ItemResource extends ResourceSupport {
         this.placeId = placeId;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Set<String> getCategories() {
         return categories;
     }
@@ -54,7 +45,6 @@ public class ItemResource extends ResourceSupport {
         return "ItemResource{" +
                 "itemRef='" + itemRef + '\'' +
                 ", placeId='" + placeId + '\'' +
-                ", name='" + name + '\'' +
                 ", categories=" + categories +
                 '}';
     }

@@ -10,6 +10,7 @@ import java.util.List;
 public interface CategoryService {
     List<Category> findAll();
     Category findById(final Long id);
+    Category findByName(final String name);
     Category create(final Category category);
     void delete(final Category category);
 }

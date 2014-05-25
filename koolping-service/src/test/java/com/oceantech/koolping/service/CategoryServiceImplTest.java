@@ -67,6 +67,20 @@ public class CategoryServiceImplTest {
     }
 
     @Test
+    public void shouldFindByName(){
+        Category category = getOne(100L);
+        category.setName("park");
+        when(mockCategoryRepository.findByName("park")).thenReturn(category);
+
+        Category actual = categoryService.findByName("park");
+
+        assertThat(actual).isNotNull();
+        assertThat(actual.getId()).isEqualTo(100);
+        assertThat(actual.getName()).isEqualTo("park");
+        verify(mockCategoryRepository).findByName("park");
+    }
+
+    @Test
     public void shouldCreate(){
         Category category = getOne(100L);
         category.setName("cafe");
