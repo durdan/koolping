@@ -43,14 +43,23 @@ public class PersonAssembler {
             resource.setUsername(person.getUsername());
             resource.setFirstName(person.getFirstName());
             resource.setLastName(person.getLastName());
-            if (person.getEmail() != null) {
+            if (StringUtils.isNotEmpty(person.getEmail())) {
                 resource.setEmail(person.getEmail());
             }
-            if (person.getGender() != null) {
+            if (StringUtils.isNotEmpty(person.getGender())) {
                 resource.setGender(person.getGender());
             }
             if (person.getBirthDate() != null) {
                 resource.setBirthDate(DATE_FORMAT.format(person.getBirthDate()));
+            }
+            if (StringUtils.isNotEmpty(person.getFacebookId())) {
+                resource.setFacebookId(person.getFacebookId());
+            }
+            if (StringUtils.isNotEmpty(person.getTwitterId())) {
+                resource.setTwitterId(person.getTwitterId());
+            }
+            if (StringUtils.isNotEmpty(person.getGoogleplusId())) {
+                resource.setGoogleplusId(person.getGoogleplusId());
             }
             resource.add(ControllerLinkBuilder.
                     linkTo(ControllerLinkBuilder.

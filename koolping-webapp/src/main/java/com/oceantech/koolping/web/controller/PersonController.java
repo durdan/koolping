@@ -215,7 +215,36 @@ public class PersonController {
                         getPerson(person.getId()))
                 .withRel(ApplicationProtocol.FRIEND_OF));
 
+        collection.add(ControllerLinkBuilder.
+                linkTo(ControllerLinkBuilder.
+                        methodOn(PersonController.class).
+                        getFriendForm(person.getId()))
+                .withRel(ApplicationProtocol.FRIEND_FORM));
+
         return new ResponseEntity<>(collection, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/{personId}/friends/form", method = RequestMethod.GET)
+    public HttpEntity<PersonForm> getFriendForm(@PathVariable("personId")Long personId){
+        Person person = personService.findById(personId);
+        PersonForm form = new PersonForm();
+        form.add(ControllerLinkBuilder.
+                linkTo(ControllerLinkBuilder.
+                        methodOn(PersonController.class).
+                        createFriend(person.getId(), form)).
+                withRel(ApplicationProtocol.CREATE_FRIEND));
+        return new ResponseEntity<>(form, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/{personId}/friends/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public HttpEntity<PersonResource> createFriend(@PathVariable("personId")Long personId, @RequestBody PersonForm form){
+        Person person = personService.findById(personId);
+        Person friend = personService.create(toPerson(form));
+        person.knows(friend);
+        Person updatedPerson = personService.update(person);
+        PersonResource resource = toResource(updatedPerson);
+        resource = addLinks(updatedPerson, resource);
+        return new ResponseEntity<>(resource, HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/{personId}", method = RequestMethod.DELETE)
