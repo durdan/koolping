@@ -1,24 +1,15 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:p="http://www.springframework.org/schema/p"
-       xmlns:util="http://www.springframework.org/schema/util"
-
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
         http://www.springframework.org/schema/context
-
         http://www.springframework.org/schema/context/spring-context-3.1.xsd
         http://www.springframework.org/schema/mvc
-        http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
-       http://www.springframework.org/schema/util
-        http://www.springframework.org/schema/util/spring-util-3.1.xsd"
-       xmlns:mvc="http://www.springframework.org/schema/mvc"
-        >
+        http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd"
+        xmlns:mvc="http://www.springframework.org/schema/mvc">
 
-    <context:property-placeholder properties-ref="deployProperties"/>
-    <context:component-scan base-package="com.oceantech.koolping.controller"/>
-    <context:component-scan base-package="com.oceantech.koolping.validator"/>
+    <context:component-scan base-package="com.oceantech.koolping.web.controller"/>
 
     <mvc:annotation-driven/>
 
@@ -33,30 +24,5 @@
     </bean>
 
     <bean id="urlFilenameViewController" class="org.springframework.web.servlet.mvc.UrlFilenameViewController"/>
-
-    <bean id="templateResolver" class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
-        <property name="prefix" value="/WEB-INF/views/"/>
-        <property name="suffix" value=".html"/>
-        <property name="templateMode" value="HTML5"/>
-        <property name="cacheable" value="false"/>
-    </bean>
-    <util:map id="templateAliases">
-        <entry key="connect/facebookConnect" value="facebook/connect"/>
-        <entry key="connect/twitterConnect" value="twitter/connect"/>
-        <entry key="connect/facebookConnected" value="facebook/connected"/>
-        <entry key="connect/twitterConnected" value="twitter/connected"/>
-    </util:map>
-
-    <bean id="templateEngine" class="org.thymeleaf.spring3.SpringTemplateEngine"
-          p:templateResolver-ref="templateResolver"/>
-
-    <bean class="org.thymeleaf.spring3.view.ThymeleafViewResolver"
-          p:templateEngine-ref="templateEngine"/>
-
-    <!-- Imports Spring Social configuration -->
-    <import resource="spring-social.xml"/>
-
-    <bean id="deployProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean"
-          p:location="/WEB-INF/spring.properties"/>
 
 </beans>

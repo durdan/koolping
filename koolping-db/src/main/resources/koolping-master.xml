@@ -5,12 +5,12 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
 
-    <include file="changelogs/OTC-1-Create-User-Table.xml" />
-    <include file="changelogs/OTC-2-Create-User-Role-Table.xml" />
-    <include file="changelogs/OTC-3-Insert-User-Data.xml" />
-    <include file="changelogs/OTC-4-Create-Social-user-Tabel.xml"/>
-    <include file="changelogs/OTC-5-Create-Role-Table.xml"/>
-    <include file="changelogs/OTC-6-Create-Restaurant-Table.xml"/>
+    <!--<include file="changelogs/OTC-1-Create-User-Table.xml" />-->
+    <!--<include file="changelogs/OTC-2-Create-User-Role-Table.xml" />-->
+    <!--<include file="changelogs/OTC-3-Insert-User-Data.xml" />-->
+    <!--<include file="changelogs/OTC-4-Create-Social-user-Tabel.xml"/>-->
+    <!--<include file="changelogs/OTC-5-Create-Role-Table.xml"/>-->
+    <!--<include file="changelogs/OTC-6-Create-Restaurant-Table.xml"/>-->
 
 </databaseChangeLog>
 
