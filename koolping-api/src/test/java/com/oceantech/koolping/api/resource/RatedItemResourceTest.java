@@ -18,6 +18,9 @@ public class RatedItemResourceTest {
         resource.setNoOfGreenRatingByFriends(2);
         resource.setNoOfNeutralRatingByFriends(3);
         resource.setNoOfRedRatingByFriends(2);
+        resource.setTotalGreenRating(3);
+        resource.setTotalRedRating(2);
+        resource.setTotalNeutralRating(3);
 
         assertThat(resource).isNotNull();
         assertThat(resource.getItemRef()).isEqualTo("urn:items:1");
@@ -26,5 +29,8 @@ public class RatedItemResourceTest {
         assertThat(resource.getNoOfGreenRatingByFriends()).isEqualTo(2);
         assertThat(resource.getNoOfNeutralRatingByFriends()).isEqualTo(3);
         assertThat(resource.getNoOfRedRatingByFriends()).isEqualTo(2);
+        assertThat(resource.getTotalGreenRating()).isEqualTo(3);
+        assertThat(resource.getTotalRedRating()).isEqualTo(2);
+        assertThat(resource.getTotalNeutralRating()).isEqualTo(3);
     }
 }

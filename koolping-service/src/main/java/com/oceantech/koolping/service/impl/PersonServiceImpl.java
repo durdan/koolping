@@ -1,6 +1,7 @@
 package com.oceantech.koolping.service.impl;
 
 import com.oceantech.koolping.annotation.ControlService;
+import com.oceantech.koolping.domain.Item;
 import com.oceantech.koolping.domain.Person;
 import com.oceantech.koolping.exception.IllegalKoolPingAction;
 import com.oceantech.koolping.repository.PersonRepository;
@@ -42,22 +43,22 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public Person findByUsername(String username) {
+    public Person findByUsername(final String username) {
         return personRepository.findByUsername(username.trim());
     }
 
     @Override
-    public Person findByFacebookId(String facebookId) {
+    public Person findByFacebookId(final String facebookId) {
         return personRepository.findByFacebookId(facebookId.trim());
     }
 
     @Override
-    public Person findByTwitterId(String twitterId) {
+    public Person findByTwitterId(final String twitterId) {
         return personRepository.findByTwitterId(twitterId.trim());
     }
 
     @Override
-    public Person findByGoogleplusId(String googleplusId) {
+    public Person findByGoogleplusId(final String googleplusId) {
         return personRepository.findByGoogleplusId(googleplusId.trim());
     }
 
@@ -87,12 +88,22 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public Person update(Person person) {
+    public Person update(final Person person) {
         return personRepository.save(person);
     }
 
     @Override
     public void delete(final Person person) {
         personRepository.delete(person);
+    }
+
+    @Override
+    public String findMyRating(final Person person, final Item item) {
+        return personRepository.findMyRating(person, item);
+    }
+
+    @Override
+    public Integer findMyFriendsRating(final Person person, final Item item, final String rating) {
+        return personRepository.findMyFriendsRating(person, item, rating);
     }
 }

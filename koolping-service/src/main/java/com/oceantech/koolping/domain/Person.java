@@ -4,9 +4,7 @@ package com.oceantech.koolping.domain;
 import org.neo4j.graphdb.Direction;
 import org.springframework.data.neo4j.annotation.*;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @NodeEntity
 public class Person {
@@ -28,11 +26,15 @@ public class Person {
     public Person() {
     }
 
-    @RelatedTo(type="FRIEND", direction= Direction.BOTH)
-    private @Fetch Set<Person> friends = new HashSet<>();
+    @RelatedTo(type = "FRIEND", direction = Direction.BOTH)
+    private
+    @Fetch
+    Set<Person> friends = new HashSet<>();
 
     @RelatedToVia(type = "RATED")
-    private @Fetch Set<Rate> ratings = new HashSet<>();
+    private
+    @Fetch
+    Set<Rate> ratings = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -143,6 +145,14 @@ public class Person {
             friends = new HashSet<>();
         }
         friends.add(person);
+    }
+
+    public List<Item> getRatedItems() {
+        List<Item> ratedItems = new ArrayList<>();
+        for (Rate rating : this.ratings) {
+            ratedItems.add(rating.getItem());
+        }
+        return ratedItems;
     }
 
     @Override

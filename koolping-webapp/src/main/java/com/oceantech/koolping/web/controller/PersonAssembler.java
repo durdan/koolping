@@ -16,11 +16,15 @@ import java.util.Set;
 /**
  * @author Sanjoy Roy
  */
-public class PersonAssembler {
+public final class PersonAssembler {
 
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-MM-yyyy");
 
-    public static List<PersonResource> toResources(List<Person> persons) {
+    private PersonAssembler() {
+        throw new AssertionError();
+    }
+
+    public static List<PersonResource> toResources(final List<Person> persons) {
         List<PersonResource> personResources = new ArrayList<>();
         for (Person person : persons) {
             personResources.add(toResource(person));
@@ -28,7 +32,7 @@ public class PersonAssembler {
         return personResources;
     }
 
-    public static List<PersonResource> toResources(Set<Person> persons) {
+    public static List<PersonResource> toResources(final Set<Person> persons) {
         List<PersonResource> personResources = new ArrayList<>();
         for (Person person : persons) {
             personResources.add(toResource(person));
@@ -36,13 +40,19 @@ public class PersonAssembler {
         return personResources;
     }
 
-    public static PersonResource toResource(Person person) {
+    public static PersonResource toResource(final Person person) {
         PersonResource resource = new PersonResource();
         if (person != null) {
             resource.setPersonRef("urn:persons:" + person.getId());
-            resource.setUsername(person.getUsername());
-            resource.setFirstName(person.getFirstName());
-            resource.setLastName(person.getLastName());
+            if (StringUtils.isNotEmpty(person.getUsername())) {
+                resource.setUsername(person.getUsername());
+            }
+            if (StringUtils.isNotEmpty(person.getFirstName())) {
+                resource.setFirstName(person.getFirstName());
+            }
+            if (StringUtils.isNotEmpty(person.getLastName())) {
+                resource.setLastName(person.getLastName());
+            }
             if (StringUtils.isNotEmpty(person.getEmail())) {
                 resource.setEmail(person.getEmail());
             }
@@ -70,7 +80,7 @@ public class PersonAssembler {
         return resource;
     }
 
-    public static PersonResource addLinks(Person person, PersonResource resource){
+    public static PersonResource addLinks(final Person person, final PersonResource resource) {
         resource.add(ControllerLinkBuilder.
                 linkTo(ControllerLinkBuilder.
                         methodOn(PersonController.class).
@@ -86,13 +96,19 @@ public class PersonAssembler {
         resource.add(ControllerLinkBuilder.
                 linkTo(ControllerLinkBuilder.
                         methodOn(PersonController.class).
+                        getRatedItems(person.getId()))
+                .withRel(ApplicationProtocol.RATED_ITEMS));
+
+        resource.add(ControllerLinkBuilder.
+                linkTo(ControllerLinkBuilder.
+                        methodOn(PersonController.class).
                         deletePerson(person.getId()))
                 .withRel(ApplicationProtocol.DELETE_PERSON));
 
         return resource;
     }
 
-    public static Person toPerson(PersonForm form) {
+    public static Person toPerson(final PersonForm form) {
         Person person = new Person();
         if (StringUtils.isNotEmpty(form.getUsername())) {
             person.setUsername(form.getUsername().trim());

@@ -3,7 +3,6 @@ package com.oceantech.koolping.web.controller;
 import com.oceantech.koolping.annotation.BoundaryController;
 import com.oceantech.koolping.api.ApplicationProtocol;
 import com.oceantech.koolping.api.resource.*;
-
 import com.oceantech.koolping.domain.Category;
 import com.oceantech.koolping.domain.Item;
 import com.oceantech.koolping.domain.Person;
@@ -11,7 +10,6 @@ import com.oceantech.koolping.domain.Rate;
 import com.oceantech.koolping.service.CategoryService;
 import com.oceantech.koolping.service.ItemService;
 import com.oceantech.koolping.service.PersonService;
-
 import com.oceantech.koolping.service.RateService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 import static com.oceantech.koolping.web.controller.PersonAssembler.*;
+import static com.oceantech.koolping.web.controller.RatedItemAssembler.toResources;
 
 /**
  * Controller for managing users
@@ -199,6 +198,9 @@ public class PersonController {
             resource.setCategories(categories);
         }
         resource.setMyRating(rate.getRating());
+        resource.setTotalGreenRating(rate.getItem().getTotalGreen());
+        resource.setTotalRedRating(rate.getItem().getTotalRed());
+        resource.setTotalNeutralRating(rate.getItem().getTotalNeutral());
         return resource;
     }
 
@@ -220,6 +222,28 @@ public class PersonController {
                         methodOn(PersonController.class).
                         getFriendForm(person.getId()))
                 .withRel(ApplicationProtocol.FRIEND_FORM));
+
+        return new ResponseEntity<>(collection, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/{personId}/rateditems", method = RequestMethod.GET)
+    public HttpEntity<RatedItemResourceCollection> getRatedItems(@PathVariable("personId") Long personId) {
+
+        Person person = personService.findById(personId);
+
+        RatedItemResourceCollection collection = new RatedItemResourceCollection(toResources(person, personService));
+
+        collection.add(ControllerLinkBuilder.
+                linkTo(ControllerLinkBuilder.
+                        methodOn(PersonController.class).
+                        getRatedItems(person.getId()))
+                .withSelfRel());
+
+        collection.add(ControllerLinkBuilder.
+                linkTo(ControllerLinkBuilder.
+                        methodOn(PersonController.class).
+                        getPerson(person.getId()))
+                .withRel(ApplicationProtocol.PERSON));
 
         return new ResponseEntity<>(collection, HttpStatus.OK);
     }

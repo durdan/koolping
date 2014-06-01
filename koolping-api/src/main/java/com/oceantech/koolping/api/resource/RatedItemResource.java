@@ -7,10 +7,13 @@ package com.oceantech.koolping.api.resource;
  */
 public class RatedItemResource extends ItemResource {
 
-    private String myRating;
+    private String myRating = "";
     private int noOfGreenRatingByFriends;
     private int noOfRedRatingByFriends;
     private int noOfNeutralRatingByFriends;
+    private int totalGreenRating;
+    private int totalRedRating;
+    private int totalNeutralRating;
 
     public String getMyRating() {
         return myRating;
@@ -44,6 +47,30 @@ public class RatedItemResource extends ItemResource {
         this.noOfNeutralRatingByFriends = noOfNeutralRatingByFriends;
     }
 
+    public int getTotalGreenRating() {
+        return totalGreenRating;
+    }
+
+    public void setTotalGreenRating(int totalGreenRating) {
+        this.totalGreenRating = totalGreenRating;
+    }
+
+    public int getTotalRedRating() {
+        return totalRedRating;
+    }
+
+    public void setTotalRedRating(int totalRedRating) {
+        this.totalRedRating = totalRedRating;
+    }
+
+    public int getTotalNeutralRating() {
+        return totalNeutralRating;
+    }
+
+    public void setTotalNeutralRating(int totalNeutralRating) {
+        this.totalNeutralRating = totalNeutralRating;
+    }
+
     @Override
     public String toString() {
         return "RatedItemResource{" +
@@ -51,6 +78,9 @@ public class RatedItemResource extends ItemResource {
                 ", noOfGreenRatingByFriends=" + noOfGreenRatingByFriends +
                 ", noOfRedRatingByFriends=" + noOfRedRatingByFriends +
                 ", noOfNeutralRatingByFriends=" + noOfNeutralRatingByFriends +
+                ", totalGreenRating=" + totalGreenRating +
+                ", totalRedRating=" + totalRedRating +
+                ", totalNeutralRating=" + totalNeutralRating +
                 '}';
     }
 }

@@ -1,5 +1,6 @@
 package com.oceantech.koolping.service;
 
+import com.oceantech.koolping.domain.Item;
 import com.oceantech.koolping.domain.Person;
 
 import java.util.List;
@@ -17,4 +18,8 @@ public interface PersonService {
     Person create(final Person person);
     Person update(final Person person);
     void delete(final Person person);
+
+    String findMyRating(final Person person, final Item item);
+
+    Integer findMyFriendsRating(final Person person, final Item item, final String rating);
 }

@@ -16,9 +16,13 @@ import java.util.Set;
 /**
  * @author Sanjoy Roy
  */
-public class ItemAssembler {
+public final class ItemAssembler {
 
-    public static List<ItemResource> toResources(Page<Item> items) {
+    private ItemAssembler() {
+        throw new AssertionError();
+    }
+
+    public static List<ItemResource> toResources(final Page<Item> items) {
         List<ItemResource> itemResources = new ArrayList<>();
         for (Item item : items) {
             itemResources.add(toResource(item));
@@ -26,7 +30,7 @@ public class ItemAssembler {
         return itemResources;
     }
 
-    public static ItemResource toResource(Item item) {
+    public static ItemResource toResource(final Item item) {
         ItemResource resource = new ItemResource();
         resource.setItemRef("urn:items:" + item.getId());
         resource.setPlaceId(item.getPlaceId());
@@ -54,7 +58,7 @@ public class ItemAssembler {
         return resource;
     }
 
-    public static Item toItem(ItemForm form) {
+    public static Item toItem(final ItemForm form) {
         Item item = new Item();
         item.setPlaceId(form.getPlaceId());
         return item;

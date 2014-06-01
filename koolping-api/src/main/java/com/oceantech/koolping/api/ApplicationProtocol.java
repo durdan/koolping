@@ -36,4 +36,5 @@ public abstract class ApplicationProtocol {
     public static final String UNSELECT_ACTION = "unselect-action";
 
     public static final String RATE_ITEM = "rate-item";
+    public static final String RATED_ITEMS = "rated-items";
 }

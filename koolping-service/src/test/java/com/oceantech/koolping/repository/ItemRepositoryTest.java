@@ -18,7 +18,7 @@ public class ItemRepositoryTest extends AbstractKoolPingRepositoryTest {
     private ItemRepository itemRepository;
 
     @Test
-    public void shouldSave(){
+    public void shouldSave() {
         Item item = new Item();
         item.setPlaceId("ABC");
 
@@ -29,7 +29,7 @@ public class ItemRepositoryTest extends AbstractKoolPingRepositoryTest {
     }
 
     @Test
-    public void shouldFindOne(){
+    public void shouldFindOne() {
         Item item = new Item();
         Item savedItem = itemRepository.save(item);
 
@@ -40,7 +40,7 @@ public class ItemRepositoryTest extends AbstractKoolPingRepositoryTest {
     }
 
     @Test
-    public void shouldFindAll(){
+    public void shouldFindAll() {
         Item item1 = new Item();
         itemRepository.save(item1);
         Item item2 = new Item();
@@ -52,7 +52,7 @@ public class ItemRepositoryTest extends AbstractKoolPingRepositoryTest {
 
 
     @Test
-    public void shouldFindByPlaceId(){
+    public void shouldFindByPlaceId() {
         Item item = new Item();
         item.setPlaceId("ABC");
         itemRepository.save(item);
@@ -64,7 +64,7 @@ public class ItemRepositoryTest extends AbstractKoolPingRepositoryTest {
     }
 
     @Test
-    public void shouldDelete(){
+    public void shouldDelete() {
         Item item = new Item();
         item.setPlaceId("ABC");
         Item savedItem = itemRepository.save(item);

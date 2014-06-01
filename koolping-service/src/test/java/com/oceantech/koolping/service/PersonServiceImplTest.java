@@ -1,5 +1,6 @@
 package com.oceantech.koolping.service;
 
+import com.oceantech.koolping.domain.Item;
 import com.oceantech.koolping.domain.Person;
 import com.oceantech.koolping.exception.IllegalKoolPingAction;
 import com.oceantech.koolping.repository.PersonRepository;
@@ -8,18 +9,17 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.dao.DataRetrievalFailureException;
-import org.springframework.data.neo4j.conversion.QueryResultBuilder;
 import org.springframework.data.neo4j.conversion.EndResult;
+import org.springframework.data.neo4j.conversion.QueryResultBuilder;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static org.fest.assertions.Assertions.assertThat;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 /**
  * @author Sanjoy Roy
@@ -171,6 +171,26 @@ public class PersonServiceImplTest {
         personService.delete(person);
 
         verify(mockPersonRepository).delete(person);
+    }
+
+    @Test
+    public void shouldFindMyRating() {
+        when(mockPersonRepository.findMyRating(Mockito.any(Person.class), Mockito.any(Item.class))).thenReturn("red");
+
+        String actual = personService.findMyRating(new Person(), new Item());
+
+        assertThat(actual).isEqualTo("red");
+        verify(mockPersonRepository).findMyRating(Mockito.any(Person.class), Mockito.any(Item.class));
+    }
+
+    @Test
+    public void shouldFindFriendRating() {
+        when(mockPersonRepository.findMyFriendsRating(Mockito.any(Person.class), Mockito.any(Item.class), Mockito.any(String.class))).thenReturn(2);
+
+        Integer actual = personService.findMyFriendsRating(new Person(), new Item(), "green");
+
+        assertThat(actual).isEqualTo(2);
+        verify(mockPersonRepository).findMyFriendsRating(Mockito.any(Person.class), Mockito.any(Item.class), Mockito.any(String.class));
     }
 
     // Helpers

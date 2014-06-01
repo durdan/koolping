@@ -1,6 +1,8 @@
 package com.oceantech.koolping.repository;
 
+import com.oceantech.koolping.domain.Item;
 import com.oceantech.koolping.domain.Person;
+import com.oceantech.koolping.domain.Rate;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.neo4j.conversion.EndResult;
@@ -19,6 +21,11 @@ public class PersonRepositoryTest extends AbstractKoolPingRepositoryTest {
 
     @Autowired
     private PersonRepository personRepository;
+    @Autowired
+    private ItemRepository itemRepository;
+    @Autowired
+    private RateRepository rateRepository;
+
 
     @Test
     public void shouldSave(){
@@ -149,4 +156,83 @@ public class PersonRepositoryTest extends AbstractKoolPingRepositoryTest {
         EndResult<Person> persons = personRepository.findAll();
         assertThat(persons.as(List.class).size()).isEqualTo(0);
     }
+
+    @Test
+    public void shouldFindMyRating() {
+        Person person = new Person();
+        person = personRepository.save(person);
+        Item item = new Item();
+        item = itemRepository.save(item);
+        Rate rate = new Rate();
+        rate.setPerson(person);
+        rate.setItem(item);
+        rate.setRating("green");
+        rate = rateRepository.save(rate);
+        Set<Rate> ratings = new HashSet<>(1);
+        ratings.add(rate);
+        person.setRatings(ratings);
+        personRepository.save(person);
+
+        String actual = personRepository.findMyRating(person, item);
+
+        assertThat(actual).isEqualTo("green");
+    }
+
+    @Test
+    public void shouldMyFriendTotalRating() {
+
+        Item item = new Item();
+        item = itemRepository.save(item);
+
+        Person friend1 = new Person();
+        friend1 = personRepository.save(friend1);
+        Rate ratedByFriend1 = new Rate();
+        ratedByFriend1.setPerson(friend1);
+        ratedByFriend1.setItem(item);
+        ratedByFriend1.setRating("green");
+        ratedByFriend1 = rateRepository.save(ratedByFriend1);
+        Set<Rate> ratingsByFriend1 = new HashSet<>(1);
+        ratingsByFriend1.add(ratedByFriend1);
+        friend1.setRatings(ratingsByFriend1);
+        friend1 = personRepository.save(friend1);
+
+        Person friend2 = new Person();
+        friend2 = personRepository.save(friend2);
+        Rate ratedByFriend2 = new Rate();
+        ratedByFriend2.setPerson(friend2);
+        ratedByFriend2.setItem(item);
+        ratedByFriend2.setRating("red");
+        ratedByFriend2 = rateRepository.save(ratedByFriend2);
+        Set<Rate> ratingsByFriend2 = new HashSet<>(1);
+        ratingsByFriend2.add(ratedByFriend2);
+        friend2.setRatings(ratingsByFriend2);
+        friend2 = personRepository.save(friend2);
+
+        Person friend3 = new Person();
+        friend3 = personRepository.save(friend3);
+        Rate ratedByFriend3 = new Rate();
+        ratedByFriend3.setPerson(friend3);
+        ratedByFriend3.setItem(item);
+        ratedByFriend3.setRating("green");
+        ratedByFriend3 = rateRepository.save(ratedByFriend3);
+        Set<Rate> ratingsByFriend3 = new HashSet<>(1);
+        ratingsByFriend3.add(ratedByFriend3);
+        friend3.setRatings(ratingsByFriend3);
+        friend3 = personRepository.save(friend3);
+
+        Person me = new Person();
+        Set<Person> friends = new HashSet<>(3);
+        friends.add(friend1);
+        friends.add(friend2);
+        friends.add(friend3);
+        me.setFriends(friends);
+        me = personRepository.save(me);
+
+        int totalGreenRating = personRepository.findMyFriendsRating(me, item, "green");
+        int totalRedRating = personRepository.findMyFriendsRating(me, item, "red");
+
+        assertThat(totalGreenRating).isEqualTo(2);
+        assertThat(totalRedRating).isEqualTo(1);
+    }
+
 }
