@@ -209,7 +209,10 @@ public class PersonController {
 
         Person person = personService.findById(personId);
         Set<Person> friends = person.getFriends();
-        FriendResourceCollection collection = new FriendResourceCollection(toResources(friends));
+//        FriendResourceCollection collection = new FriendResourceCollection(toResources(friends));
+
+        FriendResourceCollection collection = new FriendResourceCollection();
+
 
         collection.add(ControllerLinkBuilder.
                 linkTo(ControllerLinkBuilder.
