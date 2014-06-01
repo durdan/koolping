@@ -22,7 +22,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
-import static com.oceantech.koolping.web.controller.PersonAssembler.*;
+import static com.oceantech.koolping.web.controller.PersonAssembler.toResources;
+import static com.oceantech.koolping.web.controller.PersonAssembler.toResource;
+import static com.oceantech.koolping.web.controller.PersonAssembler.toPerson;
+import static com.oceantech.koolping.web.controller.PersonAssembler.addLinks;
 import static com.oceantech.koolping.web.controller.RatedItemAssembler.toResources;
 
 /**
